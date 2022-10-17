@@ -1,2 +1,2 @@
-# Spotify_Project
+# Spotify_Project 😎
 React Spotify App
