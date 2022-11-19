@@ -10,6 +10,8 @@ import useInterval from '../hooks/useInterval';
 
 import { PieChart } from 'react-charts-d3';
 
+import "animate.css/animate.min.css";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const emojis = [ '😈', '🤬' ];
 
@@ -53,26 +55,34 @@ const ExplicitLanguage = (props) => {
             </Grid>
             <Grid item  xs={1}
                         key={1}>
-                <PieChart   data={playlistChartData}
-                            colorScale = {{ from : '#084081', to : '#7F0000' }}
-                            valueFormatter= {value => value} />
+                <AnimationOnScroll animateIn='animate__fadeInLeftBig'>
+                    <PieChart   data={playlistChartData}
+                                colorScale = {{ from : '#084081', to : '#7F0000' }}
+                                valueFormatter= {value => value} />
+                </AnimationOnScroll>
             </Grid>
 
             <Grid item  xs={1}
-                        key={1}
+                        key={3}
                         display='flex'
                         alignItems='center'>
-                <Typography variant='h5'
-                            align='center'>
-                    {msg}
-                </Typography>
+                <AnimationOnScroll animateIn='animate__fadeInUp'>
+                    <Typography variant='h5'
+                                align='center'
+                                >
+                        {msg}
+                    </Typography>
+                </AnimationOnScroll>
             </Grid>
 
             <Grid item  xs={1}
-                        key={1}>
-                <PieChart   data={top100ChartData}
-                            colorScale = {{ from : '#084081', to : '#7F0000' }}
-                            valueFormatter= {value => value} />
+                        key={4}>
+                <AnimationOnScroll animateIn='animate__fadeInRightBig'>
+                    <PieChart   data={top100ChartData}
+                                colorScale = {{ from : '#084081', to : '#7F0000' }}
+                                valueFormatter={value => value}
+                                />
+                </AnimationOnScroll>      
             </Grid>
         </Grid>
     );

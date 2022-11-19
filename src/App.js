@@ -1,18 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
 
-import react, { Fragment } from 'react'
+// React
+import react, { Fragment, useRef } from 'react'
+import { Typography, Grid, createTheme } from '@mui/material';
 
-import { Typography, Grid } from '@mui/material';
+// Other important utilities
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+import "animate.css/animate.min.css";
+import ScrollToTop from 'react-scroll-to-top';
 
-import SpotifyEmbed from './components/SpotifyEmbed';
-
-import TripThroughTime from './visualizationModules/TripThroughTime';
-import HiddenGem from './visualizationModules/HiddenGem';
-import HottestTrack from './visualizationModules/HottestTrack';
 import ExplicitLanguage from './visualizationModules/ExplicitLanguage';
+import TopBarMenu from './components/TopBarMenu';
+import TripThroughTime from './visualizationModules/Time/TripThroughTime';
+import SummaryHeader from './components/SummaryHeader/SummaryHeader';
+import SongsByPopularity from './visualizationModules/Popularity/SongsByPopularity';
+import TitleWithEmojis from './components/TitleWithEmoji';
 
-import BiteSized from './visualizationModules/BiteSized';
+import SongsByLength from './visualizationModules/Length/SongsByLength';
+
+import AllSongs from './components/AllSongs';
+import ScatterPlotByAttributes from './visualizationModules/ScatterPlotByAttributes';
+import SongSelector from './components/SongSelector/SongSelector';
+import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
+
+import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
 
 const songs = [
     {
@@ -34,7 +45,8 @@ const songs = [
         valence : 0.334,
         tempo : 171.005,
         duration_ms : 200040,
-        time_signature : 4   
+        time_signature : 4,
+        genres : [ "canadian contemporary r&b", "canadian pop", "pop" ]
     },
     {
         title : 'Purple Haze',
@@ -55,7 +67,17 @@ const songs = [
         valence: 0.486,
         tempo: 108.9,
         duration_ms: 170813,
-        time_signature: 4
+        time_signature: 4,
+        genres : [
+            "acid rock",
+            "album rock",
+            "blues rock",
+            "classic rock",
+            "hard rock",
+            "proto-metal",
+            "psychedelic rock",
+            "rock"
+        ]
     },
     {
         title : 'Hound Dog',
@@ -76,7 +98,11 @@ const songs = [
         valence: 0.949,
         tempo: 86.895,
         duration_ms: 136027,
-        time_signature: 4
+        time_signature: 4,
+        genres : [
+            "rock-and-roll",
+            "rockabilly"
+        ]
     },
     {
         title : 'Girl in the Fire',
@@ -97,7 +123,12 @@ const songs = [
         valence : 0.716,
         tempo : 174.043,
         duration_ms : 293520,
-        time_signature : 4
+        time_signature : 4,
+        genres : [
+            "australian dance",
+            "dancefloor dnb",
+            "drum and bass"
+        ]
     },
     {
         title : 'library of the universe',
@@ -118,7 +149,8 @@ const songs = [
         valence : 0.918,
         tempo : 87.95,
         duration_ms : 62216,
-        time_signature : 4
+        time_signature : 4,
+        genres : [ ]
     },
     {
         title : 'November',
@@ -139,7 +171,11 @@ const songs = [
         valence : 0.575,
         tempo : 91.85,
         duration_ms : 225347,
-        time_signature : 4
+        time_signature : 4,
+        genres : [
+            "hip hop",
+            "rap"
+        ]
     },
     {
         title : 'Learn to Fly',
@@ -160,7 +196,15 @@ const songs = [
         "valence": 0.537,
         "tempo": 135.997,
         "duration_ms": 235293,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "alternative metal",
+            "alternative rock",
+            "modern rock",
+            "permanent wave",
+            "post-grunge",
+            "rock"
+        ]
     },
     {
         title : 'Bitter Sweet Symphony',
@@ -181,7 +225,15 @@ const songs = [
         "valence": 0.518,
         "tempo": 171.176,
         "duration_ms": 357267,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "alternative rock",
+            "britpop",
+            "permanent wave",
+            "pop rock",
+            "rock",
+            "shoegaze"
+          ]
     },
     {
         title : 'Gooey',
@@ -202,7 +254,12 @@ const songs = [
         "valence": 0.106,
         "tempo": 183.114,
         "duration_ms": 289307,
-        "time_signature": 4        
+        "time_signature": 4,
+        genres : [
+            "gauze pop",
+            "indietronica",
+            "shiver pop"
+        ]        
     },
     {
         title : 'You Oughta Know',
@@ -223,7 +280,13 @@ const songs = [
         "valence": 0.43,
         "tempo": 105.32,
         "duration_ms": 249200,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "canadian pop",
+            "canadian singer-songwriter",
+            "pop rock",
+            "singer-songwriter"
+        ]
     },
     {
         title : 'No Rain',
@@ -244,10 +307,18 @@ const songs = [
         "valence": 0.566,
         "tempo": 148.117,
         "duration_ms": 217107,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "alternative metal",
+            "alternative rock",
+            "blues rock",
+            "grunge",
+            "pop rock",
+            "rock"
+        ]
     },
     {
-        title : 'No Rain',
+        title : 'Here It Goes Again',
         artist : 'OK Go',
         releaseDate : new Date('2005-01-01'),
         id : '1pHP4JeQV9wDx87D6qH9hD',
@@ -265,7 +336,17 @@ const songs = [
         "valence": 0.81,
         "tempo": 145.729,
         "duration_ms": 179813,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "alternative rock",
+            "chicago indie",
+            "indie rock",
+            "modern alternative rock",
+            "modern rock",
+            "permanent wave",
+            "pop rock",
+            "rock"
+        ]
     },
     {
         title : 'Semi-Charmed Life',
@@ -286,7 +367,14 @@ const songs = [
         "valence": 0.701,
         "tempo": 102.026,
         "duration_ms": 268360,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "alternative rock",
+            "neo mellow",
+            "pop rock",
+            "post-grunge",
+            "rock"
+        ]
     },
     {
         title : 'Hallelujah',
@@ -307,11 +395,18 @@ const songs = [
         "valence": 0.0831,
         "tempo": 97.256,
         "duration_ms": 413827,
-        "time_signature": 3
+        "time_signature": 3,
+        genres : [
+            "art rock",
+            "melancholia",
+            "permanent wave",
+            "rock",
+            "singer-songwriter"
+        ]
     }, 
     {
         title : 'Take on Me',
-        artst : 'a-ha',
+        artist : 'a-ha',
         releaseDate : new Date('1985-06-01'),
         id : '2WfaOiMkCvy7F5fcp2zZ8L',
         popularity : 85,
@@ -328,7 +423,15 @@ const songs = [
         "valence": 0.876,
         "tempo": 84.412,
         "duration_ms": 225280,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "new romantic",
+            "new wave",
+            "new wave pop",
+            "permanent wave",
+            "soft rock",
+            "synthpop"
+        ]
     },
     {
         title : 'Tek It',
@@ -349,15 +452,83 @@ const songs = [
         "valence": 0.596,
         "tempo": 146.995,
         "duration_ms": 191823,
-        "time_signature": 4
+        "time_signature": 4,
+        genres : [
+            "brooklyn indie"
+        ]
     }
 ];
 
+const comparableVals = [
+    {
+        key : 'popularity',
+        sf : 1
+    },
+    {
+        key : 'danceability',
+        sf : 100
+    },
+    {
+        key : 'energy',
+        sf : 100
+    },
+    {
+        key : 'valence',
+        sf : 100
+    },
+    {
+        key : 'tempo',
+        sf : 1
+    }
+]
+
+const font = "'Monserrat'"
+
+const theme = createTheme({
+    typography : {
+        fontFamily : font
+    }
+})
+
 function App() {
+
+    const time = useRef(null);
+    const popularity = useRef(null);
+    const length = useRef(null);
+    const genre = useRef(null);
+    const allSongs = useRef(null);
+    const scatter = useRef(null);
+
+    const topButtons = [
+        { title : 'Decade', ref : time },
+        { title : 'Popularity', ref : popularity },
+        { title : 'Length', ref : length },
+        { title : 'Genre', ref : genre },
+        { title : 'All Songs', ref : allSongs },
+        { title : 'Scatterplots', ref : scatter}
+    ];
+        
     return (
         <Fragment>
+            {/* Top header components */}
+            <Grid contianer columns={1}>
+                <Grid item xs={1} key={0}>
+                    <TopBarMenu buttons={topButtons}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
 
             <Grid container columns={1}>
+                <Grid item xs={1} key={0}>
+                    <SummaryHeader  playlistName={'My Playlist'}
+                                    songs={songs}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
+
+            <Grid container columns={1} ref={time}>
                 <Grid item xs={1} key={0}>
                     <TripThroughTime songs={songs}/>
                 </Grid>
@@ -366,91 +537,92 @@ function App() {
             <hr/>
 
             <Grid container columns={1}>
-                <Grid item xs={1} key={4}>
-                    <HiddenGem songs={songs}/>
+                <Grid   item xs={1} key={0} ref={popularity}>
+                    <SongsByPopularity songs={songs}/>
                 </Grid>
-                <Grid item xs={1} key={5}>
-                    <HottestTrack songs={songs}/>
-                </Grid>
-            </Grid>
-            <Grid item xs={1} key={99}>
-                <Typography variant='h5'
-                            align='center'>
-                    {'How does spotify measure popularity?'}
-                </Typography>
-            </Grid>
-            <Grid item xs={1} key={98}>
-                <Typography align='left'>
-                    {"The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are."}
-                </Typography>
             </Grid>
 
             <hr/>
+
+            <Grid container columns={1}>
+                <Grid item xs={1} key={0} ref={length}>
+                    <SongsByLength songs={songs}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
+
+            <Grid container columns={1}>
+                <Grid item xs={1} ref={genre}>
+                    <SongsByGenre songs={songs}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
+            
+            <Grid contianer columns={1}>
+                <Grid item xs={1}>
+                    <EnergyVsValence songs={songs}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
+
+            <Grid item xs={1} key={12312} ref={allSongs}>
+                <AllSongs songs={songs}/>
+            </Grid>
+
+            <Grid contianer columns={1}>
+                <Grid item xs={1}>
+                    <SongSelector songs={songs}/>
+                </Grid>
+            </Grid>
+
+            <hr/>
+
+            <Grid item xs={1} key={12312}>
+                <TitleWithEmojis msg='Work(s) In Progress'/>
+            </Grid>
 
             <Grid item xs={1} key={900}>
                 <ExplicitLanguage songs={songs}/>
             </Grid>
 
-            <hr/>
+            <Grid container columns={2} ref={scatter}>
+            {
+                comparableVals.map((val, idxx) => {
+                    const x = val;
+                    return comparableVals.map((val, idxy) => {
+                        const y = val;
 
-            <Typography variant='h3' align='center'>All Tracks</Typography>
-            <Grid container columns={4}>
-                {
-                    // Sort and create embeds for each one
-                    songs.sort((el1, el2) => {
-                        return el1.title.toUpperCase().localeCompare(el2.title.toUpperCase())
-                    }).map((song, index) => {
+                        // Don't create the chart
+                        if (x === y) {
+                            return (<Fragment></Fragment>)
+                        }
+
                         return (
-                            <Grid item xs={1} key={index}>
-                                <SpotifyEmbed song={song} theme={1}/>
+                            <Grid item xs={1} mb={1}>
+                                <ScatterPlotByAttributes    songs={songs}
+                                                            xAxis={x.key}
+                                                            yAxis={y.key}
+                                                            scaleFactor={{
+                                                                x : x.sf,
+                                                                y : y.sf
+                                                            }}/>
                             </Grid>
                         )
-                    })
-                }
+
+                    });
+                })
+            }
+
             </Grid>
-            <Grid container columns={1}>
-                <Grid item xs={1} key={99999900}>
-                    <BiteSized songs={songs}/>
-                </Grid>            
-            </Grid>
+
+
+
+            <ScrollToTop smooth />
         </Fragment>
     );
 }
 
 export default App;
-
-/*
-
-
-
-                <Grid item xs={1} key={1}
-                    sx={{ display : 'flex',
-                    justifyContent : 'center'}}>
-                    <Typography variant='h3'>Songs by Decade 🕑</Typography>
-                </Grid>
-                <Grid item xs={1} key={0}>
-                    <BarChart   data={data}
-                                animate={true}
-                                delay={50}
-                                height={350}
-                                axisConfig={{
-                                    showXAxis : true,
-                                    showYAxis : true,
-                                    xLabel : 'Decade',
-                                    yLabel : '# of Songs'
-                                }}
-                                margin={{
-                                    top : 25,
-                                    bottom : 30,
-                                    left : 75,
-                                    right : 75
-                                }}
-                    />
-                </Grid>
-                <Grid item xs={1} key={2} sx={{ display : 'flex', justifyContent : 'center'}}>
-                    <MessageWithEmbed song={oldestSong} leadingMsg={'The oldest song in the playlist is'}/>
-                </Grid>
-                <Grid item xs={1} key={3} sx={{ display : 'flex', justifyContent : 'center'}}>
-                    <MessageWithEmbed song={newestSong} leadingMsg={'The newest song in the playlist is'} textSide={'right'}/>
-                </Grid>
-*/
