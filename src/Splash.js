@@ -1,25 +1,29 @@
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
+import Main from './index.js';
 import Background from './Spotify_App_Logo.svg'
 import Button from '@mui/material/Button'
+import Login from './Login.js'
 
 function Splash() {
+    const [isClicked,setIsClicked] = useState(false);
+
     return (
+
         <Fragment>
-            <Grid container
-                  columns={1}
-                  spacing={0}
-                  direction="column"
-                  alignItems="center"
-                  justifyContent="center"
+            {!isClicked ? <Grid container
+                               columns={1}
+                               spacing={0}
+                               direction="column"
+                               alignItems="center"
+                               justifyContent="center"
 
 
-                  style={{ minHeight: '100vh' ,backgroundImage:`url(${Background})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat", }} sx={{ml:'auto', mr:'auto',mb:10}}>
+                               style={{ minHeight: '100vh' ,backgroundImage:`url(${Background})`,
+                                   backgroundPosition: "center",
+                                   backgroundSize: "cover",
+                                   backgroundRepeat: "no-repeat", }} sx={{ml:'auto', mr:'auto',mb:10}}>
                 <Grid item xs={1} style={{}}>
                     <div className="content" style={{
                     }}>
@@ -45,7 +49,7 @@ function Splash() {
 
 
                                 <Grid item xs={1} alignContents="center">
-                                    <Button variant="contained" color="success" size="large">Begin Your Journey </Button>
+                                    <Button variant="contained" color="success" size="large" onClick={() => setIsClicked(!isClicked)}>Begin Your Journey </Button>
                                 </Grid>
 
                             </Grid>
@@ -54,9 +58,12 @@ function Splash() {
                     </div>
                 </Grid>
             </Grid>
-        </Fragment>
 
-    );
+            : <Login/>}
+
+                </Fragment>);
+
+
 }
 
 export default Splash;
