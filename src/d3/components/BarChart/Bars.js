@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 
 import { select } from 'd3-selection';
 import { dispatch } from 'd3-dispatch';
@@ -8,6 +8,7 @@ import { transition } from 'd3-transition';
 import './bars.css';
 
 import { ChartData } from '../../utils/commonTypes';
+
 
 type Props = {|
   /** Chart Data to be consumed by chart. */
@@ -63,6 +64,8 @@ class Bars extends PureComponent<Props> {
       eventDispatcher,
     } = this.props;
 
+
+
     /** Filter out disabled data. */
     const chartData = data.filter(d => !d.disabled);
 
@@ -70,9 +73,10 @@ class Bars extends PureComponent<Props> {
     x.padding(barSpacing);
 
     const node = this.bars;
+
     const selection = select(node);
 
-    selection.selectAll('*').remove();
+    selection.selectAll('svg > *').remove();
 
     /** Set up groups. */
     const group = selection.selectAll('.group').data(chartData);
@@ -86,7 +90,7 @@ class Bars extends PureComponent<Props> {
 
     /** Set up bars. */
     const bar = groupEnter.selectAll('.bar').data(d => d.values);
-
+    
     const barEnter = bar
       .enter()
       .append('rect')
@@ -146,5 +150,6 @@ class Bars extends PureComponent<Props> {
     );
   }
 }
+
 
 export default Bars;

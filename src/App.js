@@ -2,28 +2,29 @@ import './App.css';
 
 // React
 import react, { Fragment, useRef } from 'react'
-import { Typography, Grid, createTheme } from '@mui/material';
+import { Box, Stack, Typography, Grid, createTheme } from '@mui/material';
 
 // Other important utilities
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
 import ScrollToTop from 'react-scroll-to-top';
 
-import ExplicitLanguage from './visualizationModules/ExplicitLanguage';
 import TopBarMenu from './components/TopBarMenu';
 import TripThroughTime from './visualizationModules/Time/TripThroughTime';
 import SummaryHeader from './components/SummaryHeader/SummaryHeader';
 import SongsByPopularity from './visualizationModules/Popularity/SongsByPopularity';
-import TitleWithEmojis from './components/TitleWithEmoji';
 
 import SongsByLength from './visualizationModules/Length/SongsByLength';
 
-import AllSongs from './components/AllSongs';
-import ScatterPlotByAttributes from './visualizationModules/ScatterPlotByAttributes';
+import AllSongs from './visualizationModules/AllSongs';
 import SongSelector from './components/SongSelector/SongSelector';
 import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
 
 import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
+
+import PageEnd from './visualizationModules/PageEnd';
+
+import ExplicitLanguage from './visualizationModules/ExplicitLanguage'
 
 const songs = [
     {
@@ -492,135 +493,80 @@ const theme = createTheme({
 
 function App() {
 
+
+    // These refs are used to populate the top navbar.
     const time = useRef(null);
     const popularity = useRef(null);
     const length = useRef(null);
     const genre = useRef(null);
+    const energy = useRef(null);
     const allSongs = useRef(null);
-    const scatter = useRef(null);
 
     const topButtons = [
         { title : 'Decade', ref : time },
         { title : 'Popularity', ref : popularity },
         { title : 'Length', ref : length },
         { title : 'Genre', ref : genre },
+        { title : 'Energy & Valence', ref : energy },
         { title : 'All Songs', ref : allSongs },
-        { title : 'Scatterplots', ref : scatter}
     ];
         
     return (
         <Fragment>
-            {/* Top header components */}
-            <Grid contianer columns={1}>
-                <Grid item xs={1} key={0}>
-                    <TopBarMenu buttons={topButtons}/>
-                </Grid>
-            </Grid>
+            <Stack spacing={2}>
+                <TopBarMenu buttons={topButtons}/>
+                <SummaryHeader  playlistName={'My Playlist'}
+                                songs={songs}/>
+                <hr/>
 
-            <hr/>
-
-            <Grid container columns={1}>
-                <Grid item xs={1} key={0}>
-                    <SummaryHeader  playlistName={'My Playlist'}
-                                    songs={songs}/>
-                </Grid>
-            </Grid>
-
-            <hr/>
-
-            <Grid container columns={1} ref={time}>
-                <Grid item xs={1} key={0}>
+                <Box ref={time}>
                     <TripThroughTime songs={songs}/>
-                </Grid>
-            </Grid>
+                </Box>
 
-            <hr/>
+                <hr/>
 
-            <Grid container columns={1}>
-                <Grid   item xs={1} key={0} ref={popularity}>
+                <Box ref={popularity}>
                     <SongsByPopularity songs={songs}/>
-                </Grid>
-            </Grid>
+                </Box>
 
-            <hr/>
-
-            <Grid container columns={1}>
-                <Grid item xs={1} key={0} ref={length}>
+                <hr/>
+                
+                <Box ref={length}>
                     <SongsByLength songs={songs}/>
-                </Grid>
-            </Grid>
+                </Box>
 
-            <hr/>
+                <hr/>
 
-            <Grid container columns={1}>
-                <Grid item xs={1} ref={genre}>
+                <Box ref={genre}>
                     <SongsByGenre songs={songs}/>
-                </Grid>
-            </Grid>
+                </Box>
 
-            <hr/>
-            
-            <Grid contianer columns={1}>
-                <Grid item xs={1}>
+                <hr/>
+
+                <Box ref={energy}>
                     <EnergyVsValence songs={songs}/>
-                </Grid>
-            </Grid>
+                </Box>
 
-            <hr/>
+                <hr/>
 
-            <Grid item xs={1} key={12312} ref={allSongs}>
-                <AllSongs songs={songs}/>
-            </Grid>
+                <Typography align='center' variant='h1'>
+                    {'Other fun stuff'}
+                </Typography>
 
-            <Grid contianer columns={1}>
-                <Grid item xs={1}>
-                    <SongSelector songs={songs}/>
-                </Grid>
-            </Grid>
-
-            <hr/>
-
-            <Grid item xs={1} key={12312}>
-                <TitleWithEmojis msg='Work(s) In Progress'/>
-            </Grid>
-
-            <Grid item xs={1} key={900}>
                 <ExplicitLanguage songs={songs}/>
-            </Grid>
 
-            <Grid container columns={2} ref={scatter}>
-            {
-                comparableVals.map((val, idxx) => {
-                    const x = val;
-                    return comparableVals.map((val, idxy) => {
-                        const y = val;
+                <Box ref={allSongs}>
+                    <AllSongs songs={songs}/>
+                </Box>
+                <SongSelector songs={songs}/>
 
-                        // Don't create the chart
-                        if (x === y) {
-                            return (<Fragment></Fragment>)
-                        }
+                <hr/>
 
-                        return (
-                            <Grid item xs={1} mb={1}>
-                                <ScatterPlotByAttributes    songs={songs}
-                                                            xAxis={x.key}
-                                                            yAxis={y.key}
-                                                            scaleFactor={{
-                                                                x : x.sf,
-                                                                y : y.sf
-                                                            }}/>
-                            </Grid>
-                        )
+                <PageEnd/>
 
-                    });
-                })
-            }
-
-            </Grid>
-
-
-
-            <ScrollToTop smooth />
+                
+                <ScrollToTop smooth/>
+            </Stack>
         </Fragment>
     );
 }

@@ -72,7 +72,9 @@ const SongSelector = (props) => {
                             defaultValue={currentSong}
                             onChange={handleChange}>
                     {
-                        songs.map((song, idx) => {
+                        songs.sort((el1, el2) => {
+                            return el1.title.localeCompare(el2.title);
+                        }).map((song, idx) => {
                             return <MenuItem value={idx}>{song.title}</MenuItem>
                         })
                     }

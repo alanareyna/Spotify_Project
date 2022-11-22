@@ -219,7 +219,7 @@ class BarChart extends PureComponent<Props, State> {
         }}
         className="bar-chart"
       >
-        <svg
+        <svg key={data[0].k}
           ref={svg => {
             this.svg = svg;
           }}
@@ -232,7 +232,7 @@ class BarChart extends PureComponent<Props, State> {
             />
           )}
           {data.length && (
-            <g className="wrapper">
+            <g className="wrapper" key={data[0].k + 1}>
               <Legend
                 data={data}
                 width={width}
