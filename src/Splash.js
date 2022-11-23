@@ -18,8 +18,6 @@ function Splash() {
                                direction="column"
                                alignItems="center"
                                justifyContent="center"
-
-
                                style={{ minHeight: '100vh' ,backgroundImage:`url(${Background})`,
                                    backgroundPosition: "center",
                                    backgroundSize: "cover",
@@ -47,9 +45,8 @@ function Splash() {
                                   justifyContent="center"
                                   direction="column">
 
-
                                 <Grid item xs={1} alignContents="center">
-                                    <Button variant="contained" color="success" size="large" onClick={() => setIsClicked(!isClicked)}>Begin Your Journey </Button>
+                                    <Button variant="contained" color="success" size="large" onClick={()=>setIsClicked(!isClicked)}>Begin Your Journey </Button>
                                 </Grid>
 
                             </Grid>
