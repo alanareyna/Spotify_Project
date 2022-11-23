@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import Popup from 'reactjs-popup';
 import './PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
@@ -8,12 +8,17 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import App from './App.js'
 
 
 
 const Login = () => {
+    const [isLogin,setLogin] = useState(false);
+
+
     return (
         <Fragment >
+        {!isLogin ?
             <Grid container
                   columns={1}
                   spacing={0}
@@ -56,7 +61,7 @@ const Login = () => {
                     <Button
                         variant="contained"
                         size="medium"
-                        onClick={() => {}} //on click go to main UI page
+                        onClick={() => setLogin(!isLogin)} //when data/api is pushed, we can verify onclick if its a real user
                     >Login</Button>
 
                     <Popup
@@ -129,10 +134,8 @@ const Login = () => {
 
                 </Box>
             </Grid>
-
-
+            : <App/>}
         </Fragment>
-
     );
 };
 
