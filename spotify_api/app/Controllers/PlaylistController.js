@@ -93,7 +93,31 @@ class PlaylistController {
         }).catch(err => console.log("Database connection error.", err));
     }
 
+    async getAllPlaylists(ctx) {
+        return new Promise((resolve, reject) => {
+            const query = `
+                SELECT *
+                FROM Playlist
+                WHERE username = ?
+            `;
 
+            dbConnection.query(
+                {
+                    sql: query,
+                    values: [ctx.params.username]
+                }, (err, res) => {
+                    if (err){
+                        console.log("Connection error in PlaylistController::getAllPlaylists", err);
+                        ctx.body = [];
+                        ctx.status = 200;
+                        return reject(err);
+                    }
+                    ctx.body = res;
+                    ctx.status = 200;
+                    return resolve(res);
+                });
+        }).catch(err => console.log("Database connection error.", err));
+    }
 }
 
 module.exports = PlaylistController;

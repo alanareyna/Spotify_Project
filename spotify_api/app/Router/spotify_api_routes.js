@@ -16,11 +16,10 @@ const VerifyJWT = require('../Middleware/VerifyJWT.js');
  /**
   * This is our login router which links to our login page
   */
- 
+// loginRouter(VerifyJWT);
 const loginRouter = require("koa-router")({
     prefix: '/login'
 });
-loginRouter(VerifyJWT);
 
 // initialize the userController
 // We will use the userController for the login and profile page
@@ -41,7 +40,7 @@ loginRouter.get('/', userController.authorizeUser, (err) =>
      prefix: '/:username'
  });
  
- userRouter(VerifyJWT);
+ // userRouter(VerifyJWT);
  // get user information for the profile page
  userRouter.get('/', userController.getUserInfo, (err) => console.log("userRouter error: ", err));
 
@@ -53,7 +52,7 @@ const playlistRouter = require('koa-router')({
     prefix: '/playlist'
 });
 
-playlistRouter(VerifyJWT);
+// playlistRouter(VerifyJWT);
 // add a playlist from the add playlist button from the drop down menu 
 playlistRouter.post('/addPlaylist', playlistController.addPlaylist, (err) => console.log("playlistRouter error:", err));
 // get playlist information from the drop down menu 
@@ -71,7 +70,7 @@ const albumRouter = require('koa-router')({
     prefix: '/album'
 });
 
-albumRouter(VerifyJWT);
+// albumRouter(VerifyJWT);
 albumRouter.get('/:name', albumController.getAlbum, (err) => console.log("albumRouter error:", err));
 albumRouter.post('/', albumController.addAlbum, (err) => console.log("albumRouter error: ", err));
 
@@ -83,7 +82,7 @@ const artistRouter = require('koa-router')({
     prefix: '/artist'
 });
 
-artistRouter(VerifyJWT);
+// artistRouter(VerifyJWT);
 artistRouter.get('/:name', artistController.getArtist, (err) => console.log("artistRouter error: ", err));
 artistRouter.post('/', artistController.addArtist, (err) => console.log("artistRouter error: ", err));
 
@@ -95,7 +94,7 @@ const genresRouter = require('koa-router')({
     prefix: '/genre'
 });
 
-genresRouter(VerifyJWT);
+// genresRouter(VerifyJWT);
 genresRouter.get('/', genresController.getGenre, (err) => console.log("genreRouter error: ", err));
 
 /**
@@ -106,7 +105,7 @@ const songRouter = require('koa-router')({
     prefix: '/song'
 });
 
-songRouter(VerifyJWT);
+// songRouter(VerifyJWT);
 songRouter.post('/', songController.addSong, (err) => console.log("songRouter error: ", err));
 songRouter.get('/', songController.getSongInfo, (err) => console.log("songRouter error: ", err));
 songRouter.get('/', songController.getAllSongs, (err) => console.log("songRouter error: ", err));

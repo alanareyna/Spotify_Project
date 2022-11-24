@@ -6,11 +6,12 @@ import Background from './Spotify_App_Logo.svg'
 import Button from '@mui/material/Button'
 import Login from './Login.js'
 
+// import {BrowserRouter, Routes, Route, Router} from 'react-router-dom'
+
 function Splash() {
     const [isClicked,setIsClicked] = useState(false);
 
     return (
-
         <Fragment>
             {!isClicked ? <Grid container
                                columns={1}
@@ -35,7 +36,7 @@ function Splash() {
                             </Box>
                             <style>
 
-                                }
+                                
                             </style>
 
                             <div className="vl"></div>
@@ -59,8 +60,6 @@ function Splash() {
             : <Login/>}
 
                 </Fragment>);
-
-
 }
 
 export default Splash;

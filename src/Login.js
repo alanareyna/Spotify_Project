@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 import './PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
@@ -9,11 +9,56 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import App from './App.js'
+import API from "./API_Interface/API_Interface";
 
 
 
-const Login = () => {
+const Login = ({setUser}) => {
     const [isLogin,setLogin] = useState(false);
+
+    const [userInput, setUserInput] = useState('');
+    const [verifyUser, setVerifyUser] = useState(false);
+    const [authFailed, setAuthFailed] = useState(false);
+
+
+    const handleInputChange = event => {
+        console.log("handleInputChange called.");
+
+//        event.stopPropagation();
+//        event.preventDefault();
+
+        setUserInput(event.target.value);
+        setAuthFailed(false);
+
+        if(event.key === "Enter") {
+            console.log("Login:: handleKeyPress: Verify user input.");
+            setVerifyUser(true);
+        }
+    };
+
+    useEffect(() => {
+
+        if( ! verifyUser || userInput.length === 0)
+            return;
+
+        const api = new API();
+        async function getUserInfo() {
+            api.getUserInfo(userInput)
+                .then( userInfo => {
+                    console.log(`api returns user info and it is: ${JSON.stringify(userInfo)}`);
+                    const user = userInfo.user;
+                    if( userInfo.status === "OK" ) {
+                        setUser(user);
+                    } else  {
+                        setVerifyUser(false);
+                        setAuthFailed(true);
+                    }
+                });
+        }
+
+        getUserInfo();
+    }, [verifyUser, setUser, userInput]);
+
 
 
     return (
@@ -61,7 +106,7 @@ const Login = () => {
                     <Button
                         variant="contained"
                         size="medium"
-                        onClick={() => setLogin(!isLogin)} //when data/api is pushed, we can verify onclick if its a real user
+                        onClick={() => setVerifyUser(true)} //when data/api is pushed, we can verify onclick if its a real user
                     >Login</Button>
 
                     <Popup
