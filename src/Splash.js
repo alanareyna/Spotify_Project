@@ -32,6 +32,7 @@ function Splash() {
                             <Box width={900} padding={2.5} sx={{color:'white',borderTop:1,borderBottom:1}}>
                                 <p style={{color:"white", textAlign:'center', fontSize:25}}>Bringing data visualization and music taste Together<br/>Powered by <a
                                     href="https://d3js.org/">D3</a></p>
+                                <footer style={{color:"whitesmoke", textAlign:"center"}}>A project by Alana Reyna, Joseph Henderson, and Karsten Steinhorst</footer>
                             </Box>
                             <style>
 
@@ -46,7 +47,7 @@ function Splash() {
                                   direction="column">
 
                                 <Grid item xs={1} alignContents="center">
-                                    <Button variant="contained" color="success" size="large" onClick={()=>setIsClicked(!isClicked)}>Begin Your Journey </Button>
+                                    <Button style={{padding:20}} variant="contained" color="success" size="large" onClick={()=>setIsClicked(!isClicked)}>Begin Your Journey </Button>
                                 </Grid>
 
                             </Grid>
