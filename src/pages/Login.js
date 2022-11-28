@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
-import '../PopUpWindow.css'
+import PopUpWindow from "../components/PopUpWindow/PopUpWindow";
+import '../components/PopUpWindow/PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
 import Background1 from '../assets/Spotify_App_Logo_blur.jpg'
 import TextField from '@mui/material/TextField';

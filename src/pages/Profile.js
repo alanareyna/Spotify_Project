@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import Popup from 'reactjs-popup';
-import '../PopUpWindow.css'
+import '../components/PopUpWindow/PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
 import Background1 from '../assets/Spotify_App_Logo_blur.jpg'
 import TextField from '@mui/material/TextField';
@@ -12,7 +12,7 @@ import App from '../App.js'
 import Background from '../assets/music.jpeg'
 import API from '../assets/API.png';
 import playlistData from "../components/PlaylistData.js";
-import Sidebar from '../components/SideBar.js'
+import Sidebar from '../components/Sidebar/SideBar.js'
 import bg1 from '../assets/grad1.png'
 import d3 from '../assets/d3.png'
 function requestAuthorization(){

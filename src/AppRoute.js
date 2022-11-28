@@ -6,7 +6,8 @@ import Splash from './pages/Splash.js'
 import Login from './pages/Login.js'
 import ProfilePage from './pages/Profile.js'
 import App from './App.js'
-import Sidebar from './components/SideBar.js'
+import SideBar from './components/Sidebar/SideBar.js';
+//import Sidebar from './components/SideBar/SideBar.js'
 function AppRouter() {
     return (
         <div className="wrapper">

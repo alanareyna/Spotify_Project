@@ -28,7 +28,8 @@ import UsersAndSubs from './visualizationModules/User/UsersAndSubs';
 import UsersVsComp from './visualizationModules/User/UsersVsComp';
 
 import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
-import Sidebar from "./components/SideBar.js"
+//import Sidebar from "./components/SideBar.js"
+import Sidebar from './components/Sidebar/SideBar.js';
 
 const songs = [
     {
