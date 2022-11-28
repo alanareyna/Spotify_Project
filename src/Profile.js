@@ -13,7 +13,8 @@ import Background from './music.jpeg'
 import API from './API.png'
 import playlistData from "./components/PlaylistData.js";
 import Sidebar from './components/SideBar.js'
-
+import bg1 from './grad1.png'
+import d3 from './d3.png'
 function requestAuthorization(){
     const client_Id = "a1ee653cf91e4621bf912de2d2e32475";
     const client_secret = "e6ac86ac40d748c8ad38fc545564cdcb";
@@ -32,12 +33,12 @@ function requestAuthorization(){
 
 const ProfilePage = () => {
 
-    return (<Fragment ><Sidebar/>
-
+    return (<Fragment >
+        <Sidebar/>
             <Box sx={{height:250}}className="Header" style={{margin:'auto',backgroundColor:'#04395E', backgroundPosition: "center",backgroundSize: "cover", alignContent:"center"}}>
 
-                <h2 style={{textAlign:"left",padding:80, margin:'auto', color:'forestgreen', fontSize:'2.25rem'}}>Welcome admin, <br/>try selecting a playlist, or importing a new one from Spotify!</h2></Box>
-
+                <h2 style={{textAlign:"left",padding:80, margin:'auto', color:'forestgreen', fontSize:'2.25rem'}}>Welcome admin, <br/>try selecting a playlist, or importing a new one from Spotify!</h2>
+            </Box>
         {playlistData.length !== 0 ? <div>
             <h1 style={{marginTop:25,marginLeft:80,fontSize:'2.5rem'}}>New user?</h1>
             <p style={{marginTop:25,marginLeft:80,fontSize:'1.5rem', justifyContent:"space-evenly", textAlign:"left"}}>
@@ -47,19 +48,25 @@ const ProfilePage = () => {
                     onClick={()=>requestAuthorization()} >Login to Spotify</button>
         </div> : ''}
         <h1 style={{textAlign:"center"}}>How it works.</h1>
-        <Grid container columns={2} >
+        <div style={{backgroundImage:`url(${bg1})`, backgroundPosition: "center",
+            backgroundSize: "cover",}}>
+            <Grid container columns={2} style={{display:"flex", alignItems:"center"}}>
                 <Grid item xs={1}>
                     <Box>
                         <p style={{padding:70,fontSize:'2rem', justifyContent:"space-evenly", textAlign:"center"}}> Utilizing Spotify's various API calls, we are capable of retrieving and storing metadata from songs, playlists, and artists</p>
                     </Box></Grid>
                 <Grid item xs={1} style={{justifyContent:"center"}}> <img src={API} width={800} style={{padding:50}}/> </Grid>
             </Grid>
-        <Grid container columns={2}>
-            <Grid item xs={1}>
-                <img/>
+            <Grid container columns={2} style={{display:"flex", alignItems:"center"}}>
+                <Grid item xs={1}>
+                    <img src={d3} width={800} style={{padding:50}}/>
+                </Grid>
+                <Grid item xs={1}>
+                    <p style={{padding:70,fontSize:'2rem', justifyContent:"space-evenly", textAlign:"center", marginTop:60}}>
+                        With this data, we create various representations through the help of Data-Driven Documents, also known as D3.
+                    </p></Grid>
             </Grid>
-            <Grid item xs={2}> <p style={{padding:70,fontSize:'2rem', justifyContent:"space-evenly", textAlign:"center"}}> With this powerful data, we create data representations with the help of D3's powerful libraries</p></Grid>
-        </Grid>
+            </div>
             <div>
 
 
