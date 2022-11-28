@@ -103,6 +103,14 @@ class UserController {
                 });
         });
     }
+
+    // async verifyUsername(ctx) {
+    //     return new Promise((resolve, reject) => {
+    //         const query = `
+    //             SELECT * FROM 
+    //         `
+    //     })
+    // }
 }
 
 module.exports = UserController;
