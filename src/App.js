@@ -1,9 +1,9 @@
 import './App.css';
-import ProfilePage from './Profile.js';
+import ProfilePage from './pages/Profile.js';
 
 // React
 import react, { Fragment, useRef, useState } from 'react'
-import { Typography, Grid, createTheme } from '@mui/material';
+import { Box, Typography, Grid, createTheme } from '@mui/material';
 
 // Other important utilities
 import { AnimationOnScroll } from 'react-animation-on-scroll';
@@ -19,13 +19,17 @@ import TitleWithEmojis from './components/TitleWithEmoji';
 
 import SongsByLength from './visualizationModules/Length/SongsByLength';
 
-import AllSongs from './components/AllSongs';
+import AllSongs from './visualizationModules/AllSongs.js';//'./components/AllSongs';
 import ScatterPlotByAttributes from './visualizationModules/ScatterPlotByAttributes';
 import SongSelector from './components/SongSelector/SongSelector';
 import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
 
+import UsersAndSubs from './visualizationModules/User/UsersAndSubs';
+import UsersVsComp from './visualizationModules/User/UsersVsComp';
+
 import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
 import Sidebar from "./components/SideBar.js"
+
 const songs = [
     {
         title : 'Blinding Lights',
@@ -591,39 +595,22 @@ function App() {
                 <ExplicitLanguage songs={songs}/>
             </Grid>
 
-            <Grid container columns={2} ref={scatter}>
-            {
-                comparableVals.map((val, idxx) => {
-                    const x = val;
-                    return comparableVals.map((val, idxy) => {
-                        const y = val;
-
-                        // Don't create the chart
-                        if (x === y) {
-                            return (<Fragment></Fragment>)
-                        }
-
-                        return (
-                            <Grid item xs={1} mb={1}>
-                                <ScatterPlotByAttributes    songs={songs}
-                                                            xAxis={x.key}
-                                                            yAxis={y.key}
-                                                            scaleFactor={{
-                                                                x : x.sf,
-                                                                y : y.sf
-                                                            }}/>
-                            </Grid>
-                        )
-
-                    });
-                })
-            }
-
+            <Grid container columns={4}>
+                <Grid item xs={2}>
+                    <Box>
+                        <UsersAndSubs/>
+                    </Box>
+                </Grid>
+                <Grid item xs={2}>
+                    <Box>
+                        <UsersVsComp/>
+                    </Box>
+                </Grid>
             </Grid>
 
 
 
-            <ScrollToTop smooth />)
+            <ScrollToTop smooth />
             </Fragment>
         </Fragment>
     );

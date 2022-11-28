@@ -1,10 +1,10 @@
 import {Fragment, useState} from "react";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Main from './index.js';
-import Background from './Spotify_App_Logo.svg'
+import Main from '../index.js';
+import Background from '../assets/Spotify_App_Logo.svg'
 import Button from '@mui/material/Button'
-import Login from './Login.js'
+import Login from './Login'
 import {Link} from 'react-router-dom'
 
 function Splash() {

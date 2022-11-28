@@ -1,20 +1,20 @@
 import React, {Fragment, useState} from "react";
 import Popup from 'reactjs-popup';
-import './PopUpWindow.css'
+import '../PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
-import Background1 from './Spotify_App_Logo_blur.jpg'
+import Background1 from '../assets/Spotify_App_Logo_blur.jpg'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import App from './App.js'
-import Background from './music.jpeg'
-import API from './API.png'
-import playlistData from "./components/PlaylistData.js";
-import Sidebar from './components/SideBar.js'
-import bg1 from './grad1.png'
-import d3 from './d3.png'
+import App from '../App.js'
+import Background from '../assets/music.jpeg'
+import API from '../assets/API.png';
+import playlistData from "../components/PlaylistData.js";
+import Sidebar from '../components/SideBar.js'
+import bg1 from '../assets/grad1.png'
+import d3 from '../assets/d3.png'
 function requestAuthorization(){
     const client_Id = "a1ee653cf91e4621bf912de2d2e32475";
     const client_secret = "e6ac86ac40d748c8ad38fc545564cdcb";
