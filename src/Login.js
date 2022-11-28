@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import App from './App.js'
 import API from "./API_Interface/API_Interface.js";
-
+import {Link} from "react-router-dom";
 
 
 const Login = ({setUser}) => {
@@ -63,7 +63,7 @@ const Login = ({setUser}) => {
 
     return (
         <Fragment >
-            {isLogin ?
+
                 <Grid container
                       columns={1}
                       spacing={0}
@@ -103,11 +103,14 @@ const Login = ({setUser}) => {
                     />
                     <Divider />
                     <Box display="flex" justifyContent="center" alignItems="center" width="100%" mt={2}>
-                        <Button
+                        <Link to="/Home">
+                            <Button
                             variant="contained"
                             size="medium"
-                            onClick={() => setVerifyUser(true)} //when data/api is pushed, we can verify onclick if its a real user
-                        >Login</Button>
+                            //when data/api is pushed, we can verify onclick if its a real user
+                        >Login
+                            </Button></Link>
+
 
                         <Popup
                             trigger={<Button variant="contained" className="button"> New User </Button>}
@@ -122,7 +125,8 @@ const Login = ({setUser}) => {
                                     <div className="header"> Create User </div>
                                     <div className="content" style={{textAlign:'center'}}>
 
-                                        A Spotify account is required for importing Playlists, Please <br/>create a username and password unique from your Spotify Account
+                                        A Spotify account is required for importing Playlists, Please <br/>
+                                        create a username and password unique from your Spotify Account
                                     </div>
                                     <TextField
 
@@ -179,7 +183,7 @@ const Login = ({setUser}) => {
 
                     </Box>
                 </Grid>
-                : <App/>}
+
         </Fragment>
     );
 };
