@@ -3,7 +3,7 @@ import ProfilePage from './pages/Profile.js';
 
 // React
 import react, { Fragment, useRef, useState } from 'react'
-import { Box, Typography, Grid, createTheme } from '@mui/material';
+import { Stack, Box, Typography, Grid, createTheme } from '@mui/material';
 
 // Other important utilities
 import { AnimationOnScroll } from 'react-animation-on-scroll';
@@ -19,7 +19,7 @@ import TitleWithEmojis from './components/TitleWithEmoji';
 
 import SongsByLength from './visualizationModules/Length/SongsByLength';
 
-import AllSongs from './visualizationModules/AllSongs.js';//'./components/AllSongs';
+import AllSongs from './visualizationModules/AllSongs.js';
 import ScatterPlotByAttributes from './visualizationModules/ScatterPlotByAttributes';
 import SongSelector from './components/SongSelector/SongSelector';
 import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
@@ -30,6 +30,8 @@ import UsersVsComp from './visualizationModules/User/UsersVsComp';
 import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
 //import Sidebar from "./components/SideBar.js"
 import Sidebar from './components/Sidebar/SideBar.js';
+
+import PageEnd from './visualizationModules/PageEnd.js';
 
 const songs = [
     {
@@ -498,27 +500,110 @@ const theme = createTheme({
 
 function App() {
 
+    // These refs are used to populate the top navbar.
     const time = useRef(null);
     const popularity = useRef(null);
     const length = useRef(null);
     const genre = useRef(null);
+    const energy = useRef(null);
     const allSongs = useRef(null);
-    const scatter = useRef(null);
 
     const topButtons = [
         { title : 'Decade', ref : time },
         { title : 'Popularity', ref : popularity },
         { title : 'Length', ref : length },
         { title : 'Genre', ref : genre },
+        { title : 'Energy & Valence', ref : energy },
         { title : 'All Songs', ref : allSongs },
-        { title : 'Scatterplots', ref : scatter}
     ];
+
     const [Playlist,SetPlaylist] = useState('');
     return (
         <Fragment>
+            <Sidebar/>
+            <Stack spacing={2}>
+                <TopBarMenu buttons={topButtons}/>
+                <SummaryHeader  playlistName={'My Playlist'}
+                                songs={songs}/>
+                <hr/>
+
+                <Box ref={time}>
+                    <TripThroughTime songs={songs}/>
+                </Box>
+
+                <hr/>
+
+                <Box ref={popularity}>
+                    <SongsByPopularity songs={songs}/>
+                </Box>
+
+                <hr/>
+                
+                <Box ref={length}>
+                    <SongsByLength songs={songs}/>
+                </Box>
+
+                <hr/>
+
+                <Box ref={genre}>
+                    <SongsByGenre songs={songs}/>
+                </Box>
+
+                <hr/>
+
+                <Box ref={energy}>
+                    <EnergyVsValence songs={songs}/>
+                </Box>
+
+                <hr/>
+
+                <Typography align='center' variant='h1'>
+                    {'Other fun stuff'}
+                </Typography>
+
+                <ExplicitLanguage songs={songs}/>
+
+                <Box ref={allSongs}>
+                    <AllSongs songs={songs}/>
+                </Box>
+                <SongSelector songs={songs}/>
+
+                <hr/>
+
+                <Grid container columns={4}>
+                    <Grid item xs={2}>
+                        <Box>
+                            <UsersAndSubs/>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Box>
+                            <UsersVsComp/>
+                        </Box>
+                    </Grid>
+                </Grid>
+
+                <hr/>
+
+                <PageEnd/>
+
+                
+                <ScrollToTop smooth/>
+            </Stack>
+        </Fragment>
+
+  
+    );
+}
+
+export default App;
+
+
+/*
+
+      {/*<Fragment>
              <Fragment>
                 <Sidebar/>
-            {/* Top header components */}
             <Grid contianer columns={1}>
                 <Grid item xs={1} key={0}>
                     <TopBarMenu buttons={topButtons}/>
@@ -613,8 +698,6 @@ function App() {
 
             <ScrollToTop smooth />
             </Fragment>
-        </Fragment>
-    );
-}
+    </Fragment>
 
-export default App;
+*/
