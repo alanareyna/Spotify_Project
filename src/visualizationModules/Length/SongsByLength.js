@@ -8,6 +8,8 @@ import TitleWithEmojis from '../../components/TitleWithEmoji';
 import LongestSong from './LongestSong';
 import BarChartByLength from './BarChartByLength';
 
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+
 const getShortestSong = (songs) => {
     return songs.sort((el1, el2) => el1.duration_ms - el2.duration_ms).at(0);
 }
@@ -30,7 +32,9 @@ const SongsByLength = (props) => {
             <Grid   item
                     xs={1}
                     key={10}>
-                <TitleWithEmojis    msg={'Songs By Length'}/>
+                <AnimationOnScroll animateIn='animate__pulse' initiallyVisible={true}>
+                    <TitleWithEmojis    msg={'Songs By Length'}/>
+                </AnimationOnScroll>
             </Grid>
 
             <Grid   item

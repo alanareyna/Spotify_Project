@@ -57,7 +57,8 @@ const ScatterPlotByAttributes = (props) => {
                                 colorScale={{
                                     from : '#1db954',
                                     to : '#1ed760'
-                                }}/>
+                                }}
+                                showLegend={false}/>
             </Grid>
         </Grid>
     )

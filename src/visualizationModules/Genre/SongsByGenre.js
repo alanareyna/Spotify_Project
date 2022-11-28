@@ -7,6 +7,7 @@ import PieChartByGenreWithOther from './PieChartByGenreWithOther.js';
 import WhySoManyOther from './WhySoManyOther.js';
 import MessageWithEmbed from '../../components/MessageWithEmbed.js';
 import TitleWithEmojis from '../../components/TitleWithEmoji.js';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const config = {
     desc : `One of Spotify's biggest strengths is the level of specificity at which it stores data about its tracks. ` + 
@@ -108,43 +109,53 @@ const SongsByGenre = (props) => {
     return (
         <Grid container columns={2}>
             <Grid item xs={2} key={0}>
-                <TitleWithEmojis    emojis={[ '🎸', '📯', '🥁' ]}
-                                    msg="Songs By Genre"/>
+                <AnimationOnScroll animateIn='animate__pulse' initiallyVisible={true}>
+                    <TitleWithEmojis    emojis={[ '🎸', '📯', '🥁' ]}
+                                        msg="Songs By Genre"/>
+                </AnimationOnScroll>
             </Grid>
             <Grid item xs={1} key={1}>
-                <PieChartByGenreWithOther songs={songs}/>
+                <AnimationOnScroll animateIn='animate__fadeInLeftBig'>
+                    <PieChartByGenreWithOther songs={songs}/>
+                </AnimationOnScroll>
             </Grid>
             <Grid item xs={1} key={2}>
-                <Stack spacing={1}>
-                    <Typography variant='h3' align='center'>
-                        {`So... Why so many 'Other' tags? 🤔`}
-                    </Typography>
-                    <Typography>
-                        {config.desc}
-                    </Typography>
-                    <Typography variant='h4' align='center'>
-                        {`Here are some genre tags which appeared only once:`}
-                    </Typography>
-                    <Grid container columns={4}>
-                    {
-                        singleGenres.map(genre => {
-                            return (
-                                <Grid item xs={1}>
-                                    <Typography align='center'>
-                                        {`${genre}`}
-                                    </Typography>
-                                </Grid>
-                            )
-                        })
-                    }
-                    </Grid>
-                </Stack>
+                <AnimationOnScroll animateIn='animate__fadeInRightBig'>
+                    <Stack spacing={1}>
+                        <Typography variant='h3' align='center'>
+                            {`So... Why so many 'Other' tags? 🤔`}
+                        </Typography>
+                        <Typography>
+                            {config.desc}
+                        </Typography>
+                        <Typography variant='h4' align='center'>
+                            {`Here are some genre tags which appeared only once:`}
+                        </Typography>
+                        <Grid container columns={4}>
+                        {
+                            singleGenres.map(genre => {
+                                return (
+                                    <Grid item xs={1}>
+                                        <Typography align='center'>
+                                            {`${genre}`}
+                                        </Typography>
+                                    </Grid>
+                                )
+                            })
+                        }
+                        </Grid>
+                    </Stack>
+                </AnimationOnScroll>
             </Grid>
             <Grid item xs={2} key={3}>
-                <MysteryGenreSong songs={songs}/>
+                <AnimationOnScroll animateIn='animate__fadeInLeftBig'>
+                    <MysteryGenreSong songs={songs}/>
+                </AnimationOnScroll>
             </Grid>
             <Grid item xs={2} key={4}>
-                <MostGenreSong songs={songs}/>
+                <AnimationOnScroll animateIn='animate__fadeInRightBig'>
+                    <MostGenreSong songs={songs}/>
+                </AnimationOnScroll>
             </Grid>
         </Grid>
     )

@@ -7,7 +7,8 @@ const ScatterEnergyVsValence = (props) => {
     return (
         <ScatterPlotByAttributes    songs={songs}
                                     xAxis={'energy'}
-                                    yAxis={'valence'}/>
+                                    yAxis={'valence'}
+                                    scaleFactor={{ x : 100, y : 100}}/>
     )
 }
 

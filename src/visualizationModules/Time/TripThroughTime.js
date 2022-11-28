@@ -70,8 +70,8 @@ const TripThroughTime = (props) => {
     
     const [ newestSong, setNewestSong ] = useState(() => {
         return songs.sort((el1, el2) => {
-            return el1.releaseDate.getFullYear() - el2.releaseDate.getFullYear();
-        }).at(-1);
+            return el2.releaseDate.getFullYear() - el1.releaseDate.getFullYear();
+        }).at(0);
     });
 
     const getDecadeCounts = (songs) => {
