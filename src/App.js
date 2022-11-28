@@ -511,7 +511,7 @@ function App() {
     const [Playlist,SetPlaylist] = useState('');
     return (
         <Fragment>
-            { Playlist != '' ? <Fragment>
+             <Fragment>
                 <Sidebar/>
             {/* Top header components */}
             <Grid contianer columns={1}>
@@ -624,7 +624,7 @@ function App() {
 
 
             <ScrollToTop smooth />)
-            </Fragment>  : <Fragment ><Sidebar /><ProfilePage/></Fragment> }
+            </Fragment>
         </Fragment>
     );
 }

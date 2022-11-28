@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import './SideBar.css';
 import { IconContext } from 'react-icons';
 import PlaylistData from "./PlaylistData.js";
-
+import {Link} from "react-router-dom";
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -20,7 +20,7 @@ function Sidebar() {
 
                 <FaIcons.FaBars style={{marginLeft:12, cursor:"pointer"}}onClick={showSidebar} />
                 <h2 style={{font:"Gotham Circular", color:'white', textAlign:'center'}}>Spotify Journey</h2>
-                <FaIcons.FaSignOutAlt style={{marginRight:18, cursor:"pointer", fontSize:"1.5rem"}} />
+                <Link to="/Login"><FaIcons.FaSignOutAlt style={{marginRight:18, cursor:"pointer", fontSize:"1.5rem"}} /></Link>
 
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
@@ -35,12 +35,12 @@ function Sidebar() {
                                 <h3 style={{color:"white"}}>{item.cName}</h3>
 
 
-
-
                             </li>
                         );
                     })}<Button variant="contained">⊕ import playlists</Button>
-                    <Button size={"small"} variant="outlined" onClick={()=>setPlaylist('sampleP1')}>Sample Playlist #1</Button>
+                    <Link to="/Vis"><Button size={"small"} variant="outlined" onClick={()=>setPlaylist('sampleP1')}>Sample Playlist #1</Button>
+                    </Link>
+
                 </ul>
                 <Button onClick={showSidebar}><FaIcons.FaCaretLeft/></Button>
 

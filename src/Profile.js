@@ -12,7 +12,7 @@ import App from './App.js'
 import Background from './music.jpeg'
 import API from './API.png'
 import playlistData from "./components/PlaylistData.js";
-
+import Sidebar from './components/SideBar.js'
 
 function requestAuthorization(){
     const client_Id = "a1ee653cf91e4621bf912de2d2e32475";
@@ -32,7 +32,7 @@ function requestAuthorization(){
 
 const ProfilePage = () => {
 
-    return (<Fragment >
+    return (<Fragment ><Sidebar/>
 
             <Box sx={{height:250}}className="Header" style={{margin:'auto',backgroundColor:'#04395E', backgroundPosition: "center",backgroundSize: "cover", alignContent:"center"}}>
 

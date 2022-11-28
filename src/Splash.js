@@ -5,6 +5,7 @@ import Main from './index.js';
 import Background from './Spotify_App_Logo.svg'
 import Button from '@mui/material/Button'
 import Login from './Login.js'
+import {Link} from 'react-router-dom'
 
 function Splash() {
     const [isClicked,setIsClicked] = useState(false);
@@ -12,7 +13,7 @@ function Splash() {
     return (
 
         <Fragment>
-            {!isClicked ? <Grid container
+            <Grid container
                                columns={1}
                                spacing={0}
                                direction="column"
@@ -47,7 +48,9 @@ function Splash() {
                                   direction="column">
 
                                 <Grid item xs={1} alignContents="center">
+                                    <Link to="/Login">
                                     <Button style={{padding:20}} variant="contained" color="success" size="large" onClick={()=>setIsClicked(!isClicked)}>Begin Your Journey </Button>
+                                    </Link>
                                 </Grid>
 
                             </Grid>
@@ -57,7 +60,7 @@ function Splash() {
                 </Grid>
             </Grid>
 
-            : <Login/>}
+
 
                 </Fragment>);
 
