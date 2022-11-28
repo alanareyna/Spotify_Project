@@ -39,7 +39,7 @@ const ProfilePage = () => {
 
                 <h2 style={{textAlign:"left",padding:80, margin:'auto', color:'forestgreen', fontSize:'2.25rem'}}>Welcome admin, <br/>try selecting a playlist, or importing a new one from Spotify!</h2>
             </Box>
-        {playlistData.length !== 0 ? <div>
+        {playlistData.length === 0 ? <div>
             <h1 style={{marginTop:25,marginLeft:80,fontSize:'2.5rem'}}>New user?</h1>
             <p style={{marginTop:25,marginLeft:80,fontSize:'1.5rem', justifyContent:"space-evenly", textAlign:"left"}}>
             To get started, connect your Spotify
