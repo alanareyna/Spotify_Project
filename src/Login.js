@@ -14,18 +14,17 @@ import API from "./API_Interface/API_Interface";
 
 
 const Login = ({setUser}) => {
-    const [isLogin,setLogin] = useState(false);
+    const [isLogin, setLogin] = useState(false);
 
     const [userInput, setUserInput] = useState('');
     const [verifyUser, setVerifyUser] = useState(false);
     const [authFailed, setAuthFailed] = useState(false);
 
+    const [passwordInput, setPasswordInput] = useState('');
+    const [verifyPassword, setVerifyPassword] = useState(false);
 
     const handleInputChange = event => {
         console.log("handleInputChange called.");
-
-//        event.stopPropagation();
-//        event.preventDefault();
 
         setUserInput(event.target.value);
         setAuthFailed(false);
@@ -60,6 +59,16 @@ const Login = ({setUser}) => {
     }, [verifyUser, setUser, userInput]);
 
 
+    // useEffect(() => {
+    //     if( ! verifyPassword || passwordInput.length === 0)
+    //         return;
+    //     const api = new API();
+    //     async function ger
+        
+    // }, [verifyPassword, setUser, passwordInput]);
+
+
+
 
     return (
         <Fragment >
@@ -80,10 +89,12 @@ const Login = ({setUser}) => {
                     letterSpacing: '0.2rem', fontWeight: 600, margin:'0 0 2rem 0',
                     textAlign:'center'}}>SPOTIFY-JOURNEY</h1>
                 <TextField
-
+                    error={authFailed}
                     id="outlined-error-helper-text"
                     label="Login name"
                     placeholder=""
+                    value={userInput}
+                    onChange={handleInputChange}
                     onKeyPress={(event) => {
                         if(event.key === "Enter")
                             event.preventDefault();
@@ -106,7 +117,9 @@ const Login = ({setUser}) => {
                     <Button
                         variant="contained"
                         size="medium"
-                        onClick={() => setVerifyUser(true)} //when data/api is pushed, we can verify onclick if its a real user
+                        onClick={() => {
+                            setVerifyUser(true);
+                            console.log("login button pressed"); }} //when data/api is pushed, we can verify onclick if its a real user
                     >Login</Button>
 
                     <Popup
