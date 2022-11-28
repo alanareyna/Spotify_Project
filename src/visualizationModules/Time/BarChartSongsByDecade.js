@@ -67,15 +67,6 @@ const BarChartSongsByDecade = (props) => {
 
     const [ barData, setBarData ] = useState(constructBarData());
     
-    const handleChange = (value) => {
-        setBucketSize(value);
-    }
-
-    useEffect(() => {
-        setBarData(constructBarData());
-        //ReactDOM.render(<App />, document.getElementById("app"));
-    }, [ bucketSize ]);
-
     return (
         <Stack spacing={1}>
             <BarChart
@@ -99,18 +90,6 @@ const BarChartSongsByDecade = (props) => {
                     from : '#1db954',
                     to : '#1ed760'
                 }}/>
-            <ButtonGroup  color='primary'
-                                value={bucketSize}
-                                onChange={handleChange}>
-                <Button value='5'
-                        onClick={() => {
-                            handleChange(5);
-                        }}>{'5'}</Button>
-                <Button value='10'
-                        onClick={() => {
-                            handleChange(10);
-                        }}>{'10'}</Button>
-            </ButtonGroup>
         </Stack>
         
     )

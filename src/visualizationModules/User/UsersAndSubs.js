@@ -34,7 +34,16 @@ const data = [
 const UsersAndSubs = (props) => {
 
     return (
-        <AreaChart data={data}/>
+        <AreaChart  data={data}
+                    axisConfig={{
+                        showXAxis: true, 
+                        showXAxisLabel: true,
+                        xLabel: 'Year',
+                        xLabelPosition: 'right',
+                        showYAxis: true,
+                        showYAxisLabel: true,
+                        yLabel: '# of users (in millions)',
+                        yLabelPosition: 'top'}}/>
     )
 
 }

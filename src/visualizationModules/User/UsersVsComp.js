@@ -57,7 +57,16 @@ const UsersVsComp = (props) => {
                         colorScale={{
                             from : '#00ff00',
                             to : '#ff0000'
-                        }}/>
+                        }}
+                        axisConfig={{
+                            showXAxis: true, 
+                            showXAxisLabel: true,
+                            xLabel: 'Year',
+                            xLabelPosition: 'right',
+                            showYAxis: true,
+                            showYAxisLabel: true,
+                            yLabel: '# of users (in millions)',
+                            yLabelPosition: 'top'}}/>
     )
 
 }
