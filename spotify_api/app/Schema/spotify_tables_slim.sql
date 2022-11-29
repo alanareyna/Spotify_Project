@@ -45,7 +45,7 @@ CREATE TABLE Playlist_Song (
 );
 
 CREATE TABLE Genres (
-	song VARCHAR(200) PRIMARY KEY,
+	song VARCHAR(200),
     genre VARCHAR(50),
     PRIMARY KEY (song, genre),
     FOREIGN KEY (song) REFERENCES Song(id)
