@@ -1,14 +1,14 @@
+
 import React, {Fragment, useState, useEffect } from "react";
+import { Button, Box, Divider, Grid, FormControl } from '@mui/material';
 import Popup from 'reactjs-popup';
+
 import PopUpWindow from "../components/PopUpWindow/PopUpWindow";
 import '../components/PopUpWindow/PopUpWindow.css'
 import 'reactjs-popup/dist/index.css';
 import Background1 from '../assets/Spotify_App_Logo_blur.jpg'
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+
 import App from '../App.js'
 import API from "../API_Interface/API_Interface.js";
 import {Link} from "react-router-dom";
@@ -17,9 +17,10 @@ import {Link} from "react-router-dom";
 const Login = ({setUser}) => {
     const [isLogin,setLogin] = useState(false);
 
-    const [userInput, setUserInput] = useState('');
-    const [verifyUser, setVerifyUser] = useState(false);
-    const [authFailed, setAuthFailed] = useState(false);
+    const [ userInput, setUserInput ] = useState('');
+    const [ passwordInput, setPasswordInput ] = useState('');
+    const [ verifyUser, setVerifyUser ] = useState(false);
+    const [ authFailed, setAuthFailed ] = useState(false);
 
 
     const handleInputChange = event => {
@@ -39,8 +40,14 @@ const Login = ({setUser}) => {
 
     useEffect(() => {
 
-        if( ! verifyUser || userInput.length === 0)
+        console.log('in the use effect!')
+
+        if (!verifyUser || userInput.length === 0 || passwordInput.length === 0) {
+            console.log(`${verifyUser} ${userInput.length} ${passwordInput.length}`)
             return;
+        }
+
+        console.log("we passed the guard clause")
 
         const api = new API();
         async function getUserInfo() {
@@ -58,9 +65,15 @@ const Login = ({setUser}) => {
         }
 
         getUserInfo();
-    }, [verifyUser, setUser, userInput]);
+    }, [ verifyUser, userInput, passwordInput ]);
 
+    const handleUserInputChange = (event) => {
+        setUserInput(event.target.value);
+    }
 
+    const handlePasswordInputChange = (event) => {
+        setPasswordInput(event.target.value);
+    }
 
     return (
         <Fragment >
@@ -80,37 +93,38 @@ const Login = ({setUser}) => {
                     <h1 style={{color:"white", font: "inherit", fontSize: '2.25rem',
                         letterSpacing: '0.2rem', fontWeight: 600, margin:'0 0 2rem 0',
                         textAlign:'center'}}>SPOTIFY-JOURNEY</h1>
-                    <TextField
+                        <TextField
 
-                        id="outlined-error-helper-text"
-                        label="Login name"
-                        placeholder=""
-                        onKeyPress={(event) => {
-                            if(event.key === "Enter")
-                                event.preventDefault();
-                        }}
-                        style={{backgroundColor:'white'}}
-                    />
-                    <TextField ms={1}
+                            id="outlined-error-helper-text"
+                            label="Login name"
+                            placeholder=""
+                            onKeyPress={(event) => {
+                                if(event.key === "Enter") {
+                                    event.preventDefault();
+                                }
+                            }}
+                            style={{backgroundColor:'white'}}
+                            onChange={handleUserInputChange}
+                        />
+                        <TextField ms={1}
 
-                               id="outlined-error-helper-text"
-                               label="Password"
-                               placeholder=""
-                               onKeyPress={(event) => {
-                                   if(event.key === "Enter")
-                                       event.preventDefault();
-                               }}
-                               style={{backgroundColor:'white'}}
-                    />
+                                id="outlined-error-helper-text"
+                                label="Password"
+                                placeholder=""
+                                onKeyPress={(event) => {
+                                    if(event.key === "Enter")
+                                        event.preventDefault();
+                                }}
+                                style={{backgroundColor:'white'}}
+                                onChange={handlePasswordInputChange}
+                        />
                     <Divider />
                     <Box display="flex" justifyContent="center" alignItems="center" width="100%" mt={2}>
-                        <Link to="/Home">
-                            <Button
-                            variant="contained"
-                            size="medium"
-                            //when data/api is pushed, we can verify onclick if its a real user
-                        >Login
-                            </Button></Link>
+                            <Button variant="contained"
+                                    size="medium"
+                                    onClick={() => { setVerifyUser(true) }}>
+                                Login
+                            </Button>
 
 
                         <Popup

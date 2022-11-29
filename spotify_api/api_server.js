@@ -2,9 +2,25 @@ const Koa = require('koa');
 const api = new Koa();
 const bodyParser = require('koa-bodyparser');
 const http = require('http');
+/*
+const cors = require('cors');
+
+const corsOptions = {
+    "Access-Control-Allow-Origin" : '*',
+    origin:'*',
+    credentials: true,
+    optionSuccessStatus: 200,
+}
+
+api.use(cors(corsOptions));
+*/
+
+
 
 require('dotenv').config();
 api.use(bodyParser());
+
+require('./app/Middleware/CORS.js')(api)
 
 api.use(async (ctx, next) => {
     return next().catch((err) => {
