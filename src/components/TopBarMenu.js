@@ -28,7 +28,7 @@ const TopBarMenu = (props) => {
                                 scrollToRef(button.ref)
                             }}
                             sx={{
-                                width : 150,
+                                width : 125,
                                 ml : 0.1,
                                 mr : 0.1,
                                 mt : 0.8,
