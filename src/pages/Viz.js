@@ -150,21 +150,6 @@ const Viz = (props) => {
 
                         <hr/>
 
-                        <Grid container columns={4}>
-                            <Grid item xs={2}>
-                                <Box>
-                                    <UsersAndSubs/>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Box>
-                                    <UsersVsComp/>
-                                </Box>
-                            </Grid>
-                        </Grid>
-
-                        <hr/>
-
                         <PageEnd/>
 
                         
