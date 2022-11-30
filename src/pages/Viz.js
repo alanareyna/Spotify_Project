@@ -42,19 +42,27 @@ const Viz = (props) => {
         // Construct the songs object
         const api = new API();
         async function getPlaylistSongs() {
-            api.getSongsFromPlaylist(playlsit)
+            api.getSongsFromPlaylist(playlist.id)
                 .then( info => {
-                    console.log(`api returns info and it is: ${JSON.stringify(info)}`);
-                    const s = info.songs;
-                    console.log(s)
-
+                    //console.log(`api returns info and it is: ${JSON.stringify(info)}`);
+                    const corrected = info.songs.map(song => {
+                        return {
+                            ...song,
+                            title : song.name,
+                            releaseDate : new Date(song.release_date),
+                            explicit : Boolean(song.explicit),
+                            genres : [ 'todo' ]
+                        }
+                    })
+                    console.log(corrected);
+                    setSongs(corrected);
                 });
         }
 
-
+        getPlaylistSongs();
         // to do get the genres
 
-    }, [ ]);
+    }, [ playlist ]);
 
     //const songs = { props };
 
@@ -75,72 +83,89 @@ const Viz = (props) => {
         { title : 'All Songs', ref : allSongs },
     ];
 
+    const createPage = () => {
+        if (songs === undefined) {
+            return (
+                <Typography variant='h3' align='center'>
+                    {'Loading your music...'}
+                </Typography>
+            );
+        } else {
+            return (
+                <Fragment>
+                    <Sidebar/>
+                    <Stack spacing={2}>
+                        <TopBarMenu buttons={topButtons}/>
+                        <SummaryHeader  playlist={playlist}
+                                        songs={songs}/>
+                        <hr/>
+
+                        <Box ref={time}>
+                            <TripThroughTime songs={songs}/>
+                        </Box>
+
+                        <hr/>
+
+                        <Box ref={popularity}>
+                            <SongsByPopularity songs={songs}/>
+                        </Box>
+
+                        <hr/>
+                        
+                        <Box ref={length}>
+                            <SongsByLength songs={songs}/>
+                        </Box>
+
+                        <hr/>
+
+                        <Box ref={genre}>
+                            <SongsByGenre songs={songs}/>
+                        </Box>
+
+                        <hr/>
+
+                        <Box ref={energy}>
+                            <EnergyVsValence songs={songs}/>
+                        </Box>
+
+                        <hr/>
+
+                        <Box ref={allSongs}>
+                            <AllSongs songs={songs}/>
+                        </Box>
+                        <SongSelector songs={songs}/>
+
+                        <hr/>
+
+                        <Grid container columns={4}>
+                            <Grid item xs={2}>
+                                <Box>
+                                    <UsersAndSubs/>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Box>
+                                    <UsersVsComp/>
+                                </Box>
+                            </Grid>
+                        </Grid>
+
+                        <hr/>
+
+                        <PageEnd/>
+
+                        
+                        <ScrollToTop smooth/>
+                    </Stack>
+                </Fragment>                
+            )
+        }
+    }
+
+    
     return (        
         <Fragment>
-            <Sidebar/>
-            <Stack spacing={2}>
-                <TopBarMenu buttons={topButtons}/>
-                <SummaryHeader  playlistName={'My Playlist'}
-                                songs={songs}/>
-                <hr/>
-
-                <Box ref={time}>
-                    <TripThroughTime songs={songs}/>
-                </Box>
-
-                <hr/>
-
-                <Box ref={popularity}>
-                    <SongsByPopularity songs={songs}/>
-                </Box>
-
-                <hr/>
-                
-                <Box ref={length}>
-                    <SongsByLength songs={songs}/>
-                </Box>
-
-                <hr/>
-
-                <Box ref={genre}>
-                    <SongsByGenre songs={songs}/>
-                </Box>
-
-                <hr/>
-
-                <Box ref={energy}>
-                    <EnergyVsValence songs={songs}/>
-                </Box>
-
-                <hr/>
-
-                <Box ref={allSongs}>
-                    <AllSongs songs={songs}/>
-                </Box>
-                <SongSelector songs={songs}/>
-
-                <hr/>
-
-                <Grid container columns={4}>
-                    <Grid item xs={2}>
-                        <Box>
-                            <UsersAndSubs/>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <Box>
-                            <UsersVsComp/>
-                        </Box>
-                    </Grid>
-                </Grid>
-
-                <hr/>
-
-                <PageEnd/>
-
-                
-                <ScrollToTop smooth/>
-            </Stack>
+            {createPage()}
         </Fragment>
     );
 

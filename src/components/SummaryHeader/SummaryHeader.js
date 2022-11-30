@@ -12,7 +12,7 @@ const config = {
 
 const SummaryHeader = (props) => {
 
-    const { playlistName, songs } = props;
+    const { playlist, songs } = props;
 
     return (
         <Grid   container
@@ -26,7 +26,7 @@ const SummaryHeader = (props) => {
                     xs={1}
                     key={0}>
                 <Paper elevation={2}>
-                    <SummaryHeaderText playlistName={playlistName} songs={songs}/>
+                    <SummaryHeaderText playlistName={playlist.name} songs={songs}/>
                 </Paper>
             </Grid>
 
@@ -34,7 +34,7 @@ const SummaryHeader = (props) => {
                     xs={1}
                     key={3}>
                 <SpotifyAlbumEmbed playlist={{
-                    id : '4BYZhEWoXNLnDq9hPM1TPe'
+                    id : playlist.id
                 }} theme={1}/>
             </Grid>
 

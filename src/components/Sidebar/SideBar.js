@@ -60,7 +60,7 @@ const Sidebar = (props) => {
                             <Button size='small'
                                     variant='outlined'
                                     onClick={() => {
-                                        setPlaylist(item.id);
+                                        setPlaylist(item);
                                     }}>{item.name}</Button>
                         )
                         /*return (

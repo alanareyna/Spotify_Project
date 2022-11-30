@@ -17,6 +17,13 @@ const top100Songs = {
         id : '2H1047e0oMSj10dgp7p2VG',
         releaseDate : new Date('2009-01-01'),
         weeks : 14
+    },
+    '2010' : {
+        title : 'Uptown Funk',
+        artist : 'Bruno Mars',
+        id : '32OlwWuMpZ6b0aN2RZOeMS',
+        releaseDate : new Date('2015-01-12'),
+        weeks : 13
     }
 }
 

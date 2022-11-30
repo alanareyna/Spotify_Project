@@ -57,7 +57,7 @@ class SongController {
                 console.log(tuples);
                 ctx.body = {
                     status : 'OK',
-                    playlists : tuples
+                    songs : tuples
                 }
 
                 return resolve();

@@ -80,7 +80,6 @@ const SongsByGenre = (props) => {
         const buckets = { };
 
         for (let song of songs) {
-            
             for (let genre of song.genres) {
                 if (buckets[genre] === undefined) {
                     buckets[genre] = 1
