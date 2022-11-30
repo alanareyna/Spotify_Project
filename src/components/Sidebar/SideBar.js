@@ -84,13 +84,24 @@ const SideBar = (props) => {
                     }).map((item, index) => {
                         return (
                             <Button size='small'
-                                    variant='outlined'
+                                    variant='contained'
+                                    sx={{
+                                        mt : 1,
+                                        mb : 1
+                                    }}
                                     style={{
-                                        width : 150
+                                        width : 150,
+                                        color : '#191414',
+                                        backgroundColor : '#1db954',
+                                        '&:hover' : {
+                                            backgroundColor : '#1ed760'
+                                        }
                                     }}
                                     onClick={() => {
                                         setPlaylist(item);
-                                    }}>{item.name}</Button>
+                                    }}>
+                                {item.name}
+                            </Button>
                         )
                     })}
 
