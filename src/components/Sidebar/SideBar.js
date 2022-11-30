@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
@@ -8,10 +8,29 @@ import { IconContext } from 'react-icons';
 import PlaylistData from "../PlaylistData.js";
 import {Link} from "react-router-dom";
 
-function Sidebar() {
+const Sidebar = (props) => {
+
+    const { playlists, setPlaylist } = props;
+
     const [sidebar, setSidebar] = useState(false);
-    const [Playlist,setPlaylist] = useState('');
+
     const showSidebar = () => setSidebar(!sidebar);
+
+    const getPlaylistMsg = () => {
+        if (playlists === undefined) {
+            return (<Fragment/>)
+        }
+
+        if (playlists.length === 0) {
+            return (<div>
+                <p style={{font:'Gotham Circular', color:"white"}}>
+                    Looks like you haven't imported any playlists yet,
+                </p>
+            </div>)
+        } else {
+            return (<Fragment/>);
+        }
+    }
 
     return (
 
@@ -28,16 +47,31 @@ function Sidebar() {
                     <li className='navbar-toggle'>
                         <h1 style={{textAlign:'center'}}>Your Playlists</h1>
                     </li>
-                    {PlaylistData.length === 0 ? <div><p style={{font:'Gotham Circular', color:"white"}}>Looks like you haven't imported any playlists yet,</p></div> : ''}
-                    {PlaylistData.map((item, index) => {
+
+                    
+                    <Button variant="contained">⊕ import playlists</Button>
+
+                    {/*playlists === undefined || playlists.length === 0) ? <div><p style={{font:'Gotham Circular', color:"white"}}>Looks like you haven't imported any playlists yet,</p></div> : ''*/}
+                    
+                    {getPlaylistMsg()}
+
+                    {playlists === undefined ? <Fragment/> : playlists.map((item, index) => {
                         return (
+                            <Button size='small'
+                                    variant='outlined'
+                                    onClick={() => {
+                                        setPlaylist(item.id);
+                                    }}>{item.name}</Button>
+                        )
+                        /*return (
                             <li key={index} className={item.cName}>
-                                <h3 style={{color:"white"}}>{item.cName}</h3>
+                                <h3 style={{color:"white"}}>{item.name}</h3>
 
 
                             </li>
                         );
-                    })}<Button variant="contained">⊕ import playlists</Button>
+                        */
+                    })}
                     <Link to="/Vis"><Button size={"small"} variant="outlined" onClick={()=>setPlaylist('sampleP1')}>Sample Playlist #1</Button>
                     </Link>
 

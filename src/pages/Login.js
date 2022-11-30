@@ -39,15 +39,11 @@ const Login = ({setUser}) => {
     };
 
     useEffect(() => {
-
-        console.log('in the use effect!')
-
+        
         if (!verifyUser || userInput.length === 0 || passwordInput.length === 0) {
             console.log(`${verifyUser} ${userInput.length} ${passwordInput.length}`)
             return;
         }
-
-        console.log("we passed the guard clause")
 
         const api = new API();
         async function getUserInfo() {
@@ -55,8 +51,11 @@ const Login = ({setUser}) => {
                 .then( userInfo => {
                     console.log(`api returns user info and it is: ${JSON.stringify(userInfo)}`);
                     const user = userInfo.user;
-                    if( userInfo.status === "OK" ) {
+                    console.log(`The password is ${user.password}`)
+                    if( userInfo.status === "OK" && user.password === passwordInput) {
+                        console.log('logged in successfully')
                         setUser(user);
+                        
                     } else  {
                         setVerifyUser(false);
                         setAuthFailed(true);
@@ -77,19 +76,22 @@ const Login = ({setUser}) => {
 
     return (
         <Fragment >
-
-                <Grid container
-                      columns={1}
-                      spacing={0}
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-
-
-                      style={{ minHeight: '100vh' ,backgroundImage:`url(${Background1})`,
-                          backgroundPosition: "center",
-                          backgroundSize: "cover",
-                          backgroundRepeat: "no-repeat", }} sx={{ml:'auto', mr:'auto',mb:10}}>
+                <Grid   container
+                        columns={1}
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        style={{
+                            minHeight: '100vh',
+                            backgroundImage:`url(${Background1})`,
+                            backgroundPosition: "center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat", }}
+                        sx={{
+                            ml:'auto',
+                            mr:'auto',
+                            mb:10}}>
                     <h1 style={{color:"white", font: "inherit", fontSize: '2.25rem',
                         letterSpacing: '0.2rem', fontWeight: 600, margin:'0 0 2rem 0',
                         textAlign:'center'}}>SPOTIFY-JOURNEY</h1>

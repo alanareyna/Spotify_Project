@@ -1,28 +1,16 @@
 const Koa = require('koa');
-const api = new Koa();
+const app = new Koa();
 const bodyParser = require('koa-bodyparser');
 const http = require('http');
-/*
-const cors = require('cors');
 
-const corsOptions = {
-    "Access-Control-Allow-Origin" : '*',
-    origin:'*',
-    credentials: true,
-    optionSuccessStatus: 200,
-}
-
-api.use(cors(corsOptions));
-*/
-
-
-
+// Load environment variables (or .env if local environment)
 require('dotenv').config();
-api.use(bodyParser());
+app.use(bodyParser());
+require('./app/Middleware/CORS.js')(app);
 
-require('./app/Middleware/CORS.js')(api)
-
-api.use(async (ctx, next) => {
+// Custom error catch for koa-jwt so that we can log the specific error message
+// when attempting to read and parse the access_token
+app.use(async (ctx, next) => {
     return next().catch((err) => {
         if(err.status === 401) {
             console.log('index.js: sending 401 to the client.');
@@ -35,7 +23,8 @@ api.use(async (ctx, next) => {
     });
 });
 
-require('./app/Router/spotify_api_routes');
+// require('./config/courses_routes.js')(app);
+require('./config/draught_services_routes.js')(app);
 
-const httpsServer = require('./config/ssl/ssl.js')(api.callback());
+const httpsServer = require('./config/ssl/ssl.js')(app.callback());
 httpsServer.listen(process.env.APP_PORT, () => console.log(`Listening on HTTPS port ${process.env.APP_PORT}`));

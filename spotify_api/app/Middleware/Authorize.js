@@ -11,9 +11,9 @@ module.exports = (min_type) => {
 
         const user_type = ctx.state.jwtdata.user.role;
 
-        //  if (min_type === 'admin' && user_type !== 'admin') {
-        //         return false;
-        // }
+         if (min_type === 'admin' && user_type !== 'admin') {
+                return false;
+        }
         setAccessToken(ctx, ctx.state.jwtdata.user);
         return next();
     };

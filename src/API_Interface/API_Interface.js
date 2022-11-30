@@ -7,7 +7,7 @@ const AxiosConfigured = () => {
     // Set the baseURL for all requests to the API domain instead of the current domain
     // axios.defaults.baseURL = `http://localhost:8443/api/v1`;
     // Uncomment the following line if the API server runs on the same host as your UI server.
-    axios.defaults.baseURL = `http://localhost:8443/home`;
+    axios.defaults.baseURL = `http://localhost:8443/api/v1`;
 
     // Allow the browser to send cookies to the API domain (which include auth_token)
     axios.defaults.withCredentials = true;
@@ -20,14 +20,35 @@ const axiosAgent = AxiosConfigured();
 
 export default class APIInterface {
 
-    async getUserInfo(user_id) {
-        return axiosAgent.get(`login/${user_id}`)
+    async getUserInfo(username) {
+        console.log('We have called getUserInfo')
+        return axiosAgent.get(`login/${username}`)
             .then(userInfo => userInfo.data)
             .catch(error => (
                 {
                     error,
                     user: undefined
                  }));
+    }
+
+    async getUserPlaylists(username) {
+        console.log('We have called getUserPlaylists');
+        return axiosAgent.get(`playlist/${username}`)
+            .then(info => info.data)
+            .catch(error => ({
+                error,
+                playlists : undefined
+            }));
+    }
+
+    async getSongsFromPlaylist(playlist) {
+        console.log('We have called getSongsFromPlaylist');
+        return axiosAgent.get(`song/${playlist}`)
+            .then(info => info.data)
+            .catch(error => ({
+                error,
+                songs : undefined
+            }))
     }
 
     async register(username, password, firstName, lastName) {

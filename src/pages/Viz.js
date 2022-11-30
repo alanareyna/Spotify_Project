@@ -1,40 +1,62 @@
 
-import './App.css';
-import ProfilePage from './pages/Profile.js';
+import '../App.css';
+//import ProfilePage from './pages/Profile.js';
 
 // React
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState, useEffect } from 'react'
 import { Stack, Box, Typography, Grid, createTheme } from '@mui/material';
-
+import API from "../API_Interface/API_Interface.js";
 import "animate.css/animate.min.css";
 import ScrollToTop from 'react-scroll-to-top';
-import Sidebar from './components/Sidebar/SideBar.js';
+import Sidebar from '../components/Sidebar/SideBar.js';
 
-import TopBarMenu from './components/TopBarMenu';
+import TopBarMenu from '../components/TopBarMenu';
 
-import SummaryHeader from './components/SummaryHeader/SummaryHeader';
+import SummaryHeader from '../components/SummaryHeader/SummaryHeader';
 
-import TripThroughTime from './visualizationModules/Time/TripThroughTime';
+import TripThroughTime from '../visualizationModules/Time/TripThroughTime';
 
-import SongsByLength from './visualizationModules/Length/SongsByLength';
+import SongsByLength from '../visualizationModules/Length/SongsByLength';
 
-import SongsByPopularity from './visualizationModules/Popularity/SongsByPopularity';
+import SongsByPopularity from '../visualizationModules/Popularity/SongsByPopularity';
 
-import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
+import SongsByGenre from '../visualizationModules/Genre/SongsByGenre';
 
-import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
+import EnergyVsValence from '../visualizationModules/EnergyVsValence/EnergyVsValence';
 
-import AllSongs from './visualizationModules/AllSongs.js';
-import SongSelector from './components/SongSelector/SongSelector';
+import AllSongs from '../visualizationModules/AllSongs.js';
+import SongSelector from '../components/SongSelector/SongSelector';
 
-import UsersAndSubs from './visualizationModules/User/UsersAndSubs';
-import UsersVsComp from './visualizationModules/User/UsersVsComp';
+import UsersAndSubs from '../visualizationModules/User/UsersAndSubs';
+import UsersVsComp from '../visualizationModules/User/UsersVsComp';
 
-import PageEnd from './visualizationModules/PageEnd.js';
+import PageEnd from '../visualizationModules/PageEnd.js';
 
 const Viz = (props) => {
 
-    const songs = { props };
+    const { playlist } = props;
+
+    const [ songs, setSongs ] = useState(undefined);
+
+    useEffect(() => {
+        // Construct the songs object
+        const api = new API();
+        async function getPlaylistSongs() {
+            api.getSongsFromPlaylist(playlsit)
+                .then( info => {
+                    console.log(`api returns info and it is: ${JSON.stringify(info)}`);
+                    const s = info.songs;
+                    console.log(s)
+
+                });
+        }
+
+
+        // to do get the genres
+
+    }, [ ]);
+
+    //const songs = { props };
 
     // These refs are used to populate the top navbar.
     const time = useRef(null);
@@ -53,9 +75,7 @@ const Viz = (props) => {
         { title : 'All Songs', ref : allSongs },
     ];
 
-    const [Playlist,SetPlaylist] = useState('');
-
-    return (
+    return (        
         <Fragment>
             <Sidebar/>
             <Stack spacing={2}>

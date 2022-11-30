@@ -2,36 +2,35 @@ import './App.css';
 import ProfilePage from './pages/Profile.js';
 
 // React
-import react, { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import { Stack, Box, Typography, Grid, createTheme } from '@mui/material';
 
-// Other important utilities
-import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
 import ScrollToTop from 'react-scroll-to-top';
+import Sidebar from './components/Sidebar/SideBar.js';
 
-import ExplicitLanguage from './visualizationModules/ExplicitLanguage';
 import TopBarMenu from './components/TopBarMenu';
-import TripThroughTime from './visualizationModules/Time/TripThroughTime';
+
 import SummaryHeader from './components/SummaryHeader/SummaryHeader';
-import SongsByPopularity from './visualizationModules/Popularity/SongsByPopularity';
-import TitleWithEmojis from './components/TitleWithEmoji';
+
+import TripThroughTime from './visualizationModules/Time/TripThroughTime';
 
 import SongsByLength from './visualizationModules/Length/SongsByLength';
 
-import AllSongs from './visualizationModules/AllSongs.js';
-import ScatterPlotByAttributes from './visualizationModules/ScatterPlotByAttributes';
-import SongSelector from './components/SongSelector/SongSelector';
+import SongsByPopularity from './visualizationModules/Popularity/SongsByPopularity';
+
+import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
+
 import EnergyVsValence from './visualizationModules/EnergyVsValence/EnergyVsValence';
+
+import AllSongs from './visualizationModules/AllSongs.js';
+import SongSelector from './components/SongSelector/SongSelector';
 
 import UsersAndSubs from './visualizationModules/User/UsersAndSubs';
 import UsersVsComp from './visualizationModules/User/UsersVsComp';
 
-import SongsByGenre from './visualizationModules/Genre/SongsByGenre';
-//import Sidebar from "./components/SideBar.js"
-import Sidebar from './components/Sidebar/SideBar.js';
-
 import PageEnd from './visualizationModules/PageEnd.js';
+
 
 const songs = [
     {
@@ -518,6 +517,7 @@ function App() {
     ];
 
     const [Playlist,SetPlaylist] = useState('');
+
     return (
         <Fragment>
             <Sidebar/>
@@ -556,12 +556,6 @@ function App() {
                 </Box>
 
                 <hr/>
-
-                <Typography align='center' variant='h1'>
-                    {'Other fun stuff'}
-                </Typography>
-
-                <ExplicitLanguage songs={songs}/>
 
                 <Box ref={allSongs}>
                     <AllSongs songs={songs}/>
