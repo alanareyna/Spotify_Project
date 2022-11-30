@@ -79,17 +79,20 @@ const SideBar = (props) => {
                     
                     {getPlaylistMsg()}
 
-                    {playlists === undefined ? <Fragment/> : playlists.map((item, index) => {
+                    {playlists === undefined ? <Fragment/> : playlists.sort((el1, el2) => {
+                        return el1.name.localeCompare(el2.name)
+                    }).map((item, index) => {
                         return (
                             <Button size='small'
                                     variant='outlined'
+                                    style={{
+                                        width : 150
+                                    }}
                                     onClick={() => {
                                         setPlaylist(item);
                                     }}>{item.name}</Button>
                         )
                     })}
-                    <Link to="/Vis"><Button size={"small"} variant="outlined" onClick={()=>setPlaylist('sampleP1')}>Sample Playlist #1</Button>
-                    </Link>
 
                 </ul>
                 <Button onClick={showSidebar}><FaIcons.FaCaretLeft/></Button>
