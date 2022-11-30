@@ -18,6 +18,7 @@
     "react-charts-d3": "^2.4.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-scroll-to-top": "^3.0.0",

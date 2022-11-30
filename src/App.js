@@ -7,7 +7,7 @@ import { Stack, Box, Typography, Grid, createTheme } from '@mui/material';
 
 import "animate.css/animate.min.css";
 import ScrollToTop from 'react-scroll-to-top';
-import Sidebar from './components/Sidebar/SideBar.js';
+import SideBar from './components/Sidebar/SideBar.js';
 
 import TopBarMenu from './components/TopBarMenu';
 
@@ -520,7 +520,7 @@ function App() {
 
     return (
         <Fragment>
-            <Sidebar/>
+            <SideBar/>
             <Stack spacing={2}>
                 <TopBarMenu buttons={topButtons}/>
                 <SummaryHeader  playlistName={'My Playlist'}

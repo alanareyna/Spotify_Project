@@ -44,7 +44,7 @@ const ExplicitLanguage = (props) => {
         ];
     });
 
-    const msg = `About ${100 * explicitRatio}% of the songs on this playlist are explcit. Compare that to the playlist of the 100 most streamed songs on spotify, which clocks in at 34%.`;
+    const msg = `About ${Math.floor(100 * explicitRatio)}% of the songs on this playlist are explcit. Compare that to the playlist of the 100 most streamed songs on spotify, which clocks in at 34%.`;
 
     return (
         <Grid container columns={3}>

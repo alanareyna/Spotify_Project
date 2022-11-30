@@ -30,6 +30,8 @@ import SongSelector from '../components/SongSelector/SongSelector';
 import UsersAndSubs from '../visualizationModules/User/UsersAndSubs';
 import UsersVsComp from '../visualizationModules/User/UsersVsComp';
 
+import ExplicitLanguage from '../visualizationModules/ExplicitLanguage.js';
+
 import PageEnd from '../visualizationModules/PageEnd.js';
 
 const Viz = (props) => {
@@ -72,6 +74,7 @@ const Viz = (props) => {
     const length = useRef(null);
     const genre = useRef(null);
     const energy = useRef(null);
+    const explicit = useRef(null);
     const allSongs = useRef(null);
 
     const topButtons = [
@@ -80,6 +83,7 @@ const Viz = (props) => {
         { title : 'Length', ref : length },
         { title : 'Genre', ref : genre },
         { title : 'Energy & Valence', ref : energy },
+        { title : 'Explicit', ref : explicit },
         { title : 'All Songs', ref : allSongs },
     ];
 
@@ -130,6 +134,12 @@ const Viz = (props) => {
 
                         <hr/>
 
+                        <Box ref={explicit}>
+                            <ExplicitLanguage songs={songs}/>
+                        </Box>
+
+                        <hr/>
+
                         <Box ref={allSongs}>
                             <AllSongs songs={songs}/>
                         </Box>
@@ -155,7 +165,12 @@ const Viz = (props) => {
                         <PageEnd/>
 
                         
-                        <ScrollToTop smooth/>
+                        <ScrollToTop    smooth
+                                        color='#1db954'
+                                        style={{
+                                            backgroundColor : '#191414'
+                                        }}/>
+
                     </Stack>
                 </Fragment>                
             )

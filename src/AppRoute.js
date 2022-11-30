@@ -14,7 +14,6 @@ function AppRouter() {
 
     const [ user, setUser ] = useState(undefined);
     const [ cont, setCont ] = useState(false);
-    const [ loggedIn, setLoggedIn ] = useState(false);
     const [ playlist, setPlaylist ] = useState(undefined);
 
     const getComponent = () => {
@@ -35,7 +34,7 @@ function AppRouter() {
     
     return (
         <div className="wrapper">
-                {getComponent()}
+            {getComponent()}
         </div>
     );
 }

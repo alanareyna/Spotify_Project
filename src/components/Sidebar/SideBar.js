@@ -8,7 +8,9 @@ import { IconContext } from 'react-icons';
 import PlaylistData from "../PlaylistData.js";
 import {Link} from "react-router-dom";
 
-const Sidebar = (props) => {
+import {Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+
+const SideBar = (props) => {
 
     const { playlists, setPlaylist } = props;
 
@@ -33,7 +35,7 @@ const Sidebar = (props) => {
     }
 
     return (
-
+        
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className='navbar' style={{justifyContent:"space-between"}}>
 
@@ -50,8 +52,6 @@ const Sidebar = (props) => {
 
                     
                     <Button variant="contained">⊕ import playlists</Button>
-
-                    {/*playlists === undefined || playlists.length === 0) ? <div><p style={{font:'Gotham Circular', color:"white"}}>Looks like you haven't imported any playlists yet,</p></div> : ''*/}
                     
                     {getPlaylistMsg()}
 
@@ -63,14 +63,6 @@ const Sidebar = (props) => {
                                         setPlaylist(item);
                                     }}>{item.name}</Button>
                         )
-                        /*return (
-                            <li key={index} className={item.cName}>
-                                <h3 style={{color:"white"}}>{item.name}</h3>
-
-
-                            </li>
-                        );
-                        */
                     })}
                     <Link to="/Vis"><Button size={"small"} variant="outlined" onClick={()=>setPlaylist('sampleP1')}>Sample Playlist #1</Button>
                     </Link>
@@ -80,8 +72,8 @@ const Sidebar = (props) => {
 
             </nav>
         </IconContext.Provider>
-
+        
     );
 }
 
-export default Sidebar;
+export default SideBar;
