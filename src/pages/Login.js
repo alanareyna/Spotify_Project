@@ -94,7 +94,7 @@ const Login = ({setUser}) => {
                         sx={{
                             ml:'auto',
                             mr:'auto',
-                            mb:10}}>
+                            }}>
                     <h1 style={{color:"white", font: "inherit", fontSize: '2.25rem',
                         letterSpacing: '0.2rem', fontWeight: 600, margin:'0 0 2rem 0',
                         textAlign:'center'}}>SPOTIFY-JOURNEY</h1>
