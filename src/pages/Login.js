@@ -2,6 +2,7 @@
 import React, {Fragment, useState, useEffect } from "react";
 import { Button, Box, Divider, Grid, FormControl } from '@mui/material';
 import Popup from 'reactjs-popup';
+import * as FaIcons from 'react-icons/fa';
 
 import PopUpWindow from "../components/PopUpWindow/PopUpWindow";
 import '../components/PopUpWindow/PopUpWindow.css'
@@ -16,7 +17,7 @@ import {Link} from "react-router-dom";
 
 const Login = ({setUser}) => {
     const [isLogin,setLogin] = useState(false);
-
+    const [errorState,setErrorState] = useState(false);
     const [ userInput, setUserInput ] = useState('');
     const [ passwordInput, setPasswordInput ] = useState('');
     const [ verifyUser, setVerifyUser ] = useState(false);
@@ -55,10 +56,12 @@ const Login = ({setUser}) => {
                     if( userInfo.status === "OK" && user.password === passwordInput) {
                         console.log('logged in successfully')
                         setUser(user);
+                        setErrorState(false);
                         
                     } else  {
                         setVerifyUser(false);
                         setAuthFailed(true);
+                        setErrorState(true);
                     }
                 });
         }
@@ -90,16 +93,18 @@ const Login = ({setUser}) => {
                             backgroundRepeat: "no-repeat", }}
                         sx={{
                             ml:'auto',
-                            mr:'auto'
-                        }}>
+                            mr:'auto',
+                            mb:10}}>
                     <h1 style={{color:"white", font: "inherit", fontSize: '2.25rem',
                         letterSpacing: '0.2rem', fontWeight: 600, margin:'0 0 2rem 0',
                         textAlign:'center'}}>SPOTIFY-JOURNEY</h1>
+                    {errorState ? <Grid container columns={2} style={{alignItems:"center",backgroundColor:'red', width:250, padding:3,borderRadius:10}}><FaIcons.FaExclamationCircle xs={1} item style={{justifyContent:"center", textAlign:"center"}}/><p xs={1} item style={{justifyContent:"center", textAlign:"center"}}> Wrong username or password</p></Grid> : ''}
                         <TextField
 
                             id="outlined-error-helper-text"
                             label="Login name"
                             placeholder=""
+
                             onKeyPress={(event) => {
                                 if(event.key === "Enter") {
                                     event.preventDefault();
@@ -109,10 +114,13 @@ const Login = ({setUser}) => {
                             onChange={handleUserInputChange}
                         />
                         <TextField ms={1}
+                                   className="passwordField"
+                                   id="password-field"
+                                   label="Password"
+                                   placeholder=""
+                                   type={"password"}
 
-                                id="outlined-error-helper-text"
-                                label="Password"
-                                placeholder=""
+
                                 onKeyPress={(event) => {
                                     if(event.key === "Enter")
                                         event.preventDefault();
@@ -160,6 +168,7 @@ const Login = ({setUser}) => {
                                                id="outlined-error-helper-text"
                                                label=" Password"
                                                placeholder=""
+                                               type={"password"}
                                                onKeyPress={(event) => {
                                                    if(event.key === "Enter")
                                                        event.preventDefault();
@@ -170,6 +179,7 @@ const Login = ({setUser}) => {
                                                id="outlined-error-helper-text"
                                                label="Confirm Password"
                                                placeholder=""
+                                               type={"password"}
                                                onKeyPress={(event) => {
                                                    if(event.key === "Enter")
                                                        event.preventDefault();

@@ -11,12 +11,15 @@ import Grid from '@mui/material/Grid';
 import App from '../App.js'
 import Background from '../assets/music.jpeg'
 import APIImage from '../assets/API.png';
+import usersvsComp from '../visualizationModules/User/UsersVsComp'
 import playlistData from "../components/PlaylistData.js";
 import Sidebar from '../components/Sidebar/SideBar.js'
 import bg1 from '../assets/grad1.png'
 import d3 from '../assets/d3.png'
 
 import API from "../API_Interface/API_Interface.js";
+import UsersAndSubs from "../visualizationModules/User/UsersAndSubs";
+import UsersVsComp from "../visualizationModules/User/UsersVsComp";
 
 function requestAuthorization(){
     const client_Id = "a1ee653cf91e4621bf912de2d2e32475";
@@ -36,7 +39,7 @@ function requestAuthorization(){
 
 const ProfilePage = (props) => {
 
-    const { user, setPlaylist, setUser } = props;
+    const { user, setPlaylist } = props;
     console.log(user);
     
     const [ playlists, setPlaylists ] = useState(undefined);
@@ -64,7 +67,7 @@ const ProfilePage = (props) => {
     }, [ playlists ])
 
     return (<Fragment >
-        <Sidebar playlists={playlists} setPlaylist={setPlaylist} setUser={setUser}/>
+        <Sidebar playlists={playlists} setPlaylist={setPlaylist}/>
             <Box sx={{height:250}}className="Header" style={{margin:'auto',backgroundColor:'#04395E', backgroundPosition: "center",backgroundSize: "cover", alignContent:"center"}}>
 
                 <h2 style={{
@@ -92,11 +95,11 @@ const ProfilePage = (props) => {
                     <Box>
                         <p style={{padding:70,fontSize:'2rem', justifyContent:"space-evenly", textAlign:"center"}}> Utilizing Spotify's various API calls, we are capable of retrieving and storing metadata from songs, playlists, and artists</p>
                     </Box></Grid>
-                <Grid item xs={1} style={{justifyContent:"center"}}> <img src={APIImage} width={800} style={{padding:50}}/> </Grid>
+                <Grid item xs={1} style={{justifyContent:"center"}}> <img src={APIImage} width={700} style={{padding:30}}/> </Grid>
             </Grid>
             <Grid container columns={2} style={{display:"flex", alignItems:"center"}}>
                 <Grid item xs={1}>
-                    <img src={d3} width={800} style={{padding:50}}/>
+                    <img src={d3} width={700} style={{padding:50}}/>
                 </Grid>
                 <Grid item xs={1}>
                     <p style={{padding:70,fontSize:'2rem', justifyContent:"space-evenly", textAlign:"center", marginTop:60}}>
@@ -104,10 +107,23 @@ const ProfilePage = (props) => {
                     </p></Grid>
             </Grid>
             </div>
-            <div>
+
+        <h3 style={{textAlign:"center"}}>Why use Spotify API compared to competitors?</h3>
+        <Grid container columns={4}>
+            <Grid item xs={2}>
+                <Box>
+                    <UsersAndSubs/>
+                </Box>
+            </Grid>
+            <Grid item xs={2}>
+                <Box>
+                    <UsersVsComp/>
+                </Box>
+            </Grid>
+        </Grid>
 
 
-        </div>
+
     </Fragment>);
 }
 export default ProfilePage;
