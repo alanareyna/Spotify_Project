@@ -36,7 +36,7 @@ function requestAuthorization(){
 
 const ProfilePage = (props) => {
 
-    const { user, setPlaylist } = props;
+    const { user, setPlaylist, setUser } = props;
     console.log(user);
     
     const [ playlists, setPlaylists ] = useState(undefined);
@@ -64,7 +64,7 @@ const ProfilePage = (props) => {
     }, [ playlists ])
 
     return (<Fragment >
-        <Sidebar playlists={playlists} setPlaylist={setPlaylist}/>
+        <Sidebar playlists={playlists} setPlaylist={setPlaylist} setUser={setUser}/>
             <Box sx={{height:250}}className="Header" style={{margin:'auto',backgroundColor:'#04395E', backgroundPosition: "center",backgroundSize: "cover", alignContent:"center"}}>
 
                 <h2 style={{

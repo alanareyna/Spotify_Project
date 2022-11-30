@@ -16,16 +16,23 @@ const Splash = (props) => {
     return (
 
         <Fragment>
-            <Grid container
-                               columns={1}
-                               spacing={0}
-                               direction="column"
-                               alignItems="center"
-                               justifyContent="center"
-                               style={{ minHeight: '100vh' ,backgroundImage:`url(${Background})`,
-                                   backgroundPosition: "center",
-                                   backgroundSize: "cover",
-                                   backgroundRepeat: "no-repeat", }} sx={{ml:'auto', mr:'auto',mb:10}}>
+            <Grid   container     
+                    columns={1}
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{
+                        minHeight: '100vh',
+                        backgroundImage:`url(${Background})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat"
+                    }}
+                    sx={{
+                        ml:'auto',
+                        mr:'auto',
+                    }}>
                 <Grid item xs={1} style={{}}>
                     <div className="content" style={{
                     }}>
@@ -52,11 +59,19 @@ const Splash = (props) => {
 
                                 <Grid item xs={1} alignContents="center">
                                     
-                                    <Button style={{padding:20}}
-                                            variant="contained"
-                                            color="success"
-                                            size="large"
-                                            onClick={()=>setCont(true)}>
+                                    <Button     style={{
+                                                    
+                                                    mt : 0.8,
+                                                    mb : 0.8,
+                                                    color : '#191414',
+                                                    backgroundColor : '#1db954',
+                                                    '&:hover' : {
+                                                        backgroundColor : '#1ed760'
+                                                    }
+                                                }}
+                                                variant="contained"
+                                                size="large"
+                                                onClick={ () => setCont(true) }>
                                         Begin Your Journey
                                     </Button>
                                     
@@ -71,7 +86,7 @@ const Splash = (props) => {
 
 
 
-                </Fragment>);
+        </Fragment>);
 
 
 }

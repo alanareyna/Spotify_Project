@@ -20,11 +20,11 @@ function AppRouter() {
         if (user != undefined) {
                 if (playlist !== undefined) {
                     return (
-                        <Viz playlist={playlist}/>
+                        <Viz playlist={playlist} setPlaylist={setPlaylist} setUser={setUser}/>
                     )
                 } else {
                     return (
-                        <ProfilePage user={user} setPlaylist={setPlaylist}/>
+                        <ProfilePage user={user} setPlaylist={setPlaylist} setUser={setUser}/>
                     )
                 }
         } else {

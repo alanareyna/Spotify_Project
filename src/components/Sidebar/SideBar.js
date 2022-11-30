@@ -12,7 +12,7 @@ import {Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
 const SideBar = (props) => {
 
-    const { playlists, setPlaylist } = props;
+    const { playlists, setPlaylist, setUser } = props;
 
     const [sidebar, setSidebar] = useState(false);
 
@@ -39,9 +39,33 @@ const SideBar = (props) => {
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className='navbar' style={{justifyContent:"space-between"}}>
 
-                <FaIcons.FaBars style={{marginLeft:12, cursor:"pointer"}}onClick={showSidebar} />
-                <h2 style={{font:"Gotham Circular", color:'white', textAlign:'center'}}>Spotify Journey</h2>
-                <Link to="/Login"><FaIcons.FaSignOutAlt style={{marginRight:18, cursor:"pointer", fontSize:"1.5rem"}} /></Link>
+                <FaIcons.FaBars     style={{
+                                        marginLeft:12,
+                                        cursor:"pointer"
+                                    }}
+                                    onClick={showSidebar}/>
+
+                <h2     style={{
+                            font:"Gotham Circular",
+                            color:'white',
+                            textAlign:'center'
+                        }}
+                        onClick={() => {
+                            setPlaylist(undefined);
+                        }}>
+                    Spotify Journey
+                </h2>
+
+                <FaIcons.FaSignOutAlt   style={{
+                                            marginRight:18,
+                                            cursor:"pointer",
+                                            fontSize:"1.5rem"
+                                        }}
+                                        onClick={() => {
+                                            console.log('wowie')
+                                            setPlaylist(undefined);
+                                            setUser(undefined);
+                                        }}/>
 
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

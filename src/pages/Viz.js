@@ -36,7 +36,7 @@ import PageEnd from '../visualizationModules/PageEnd.js';
 
 const Viz = (props) => {
 
-    const { playlist } = props;
+    const { playlist, setPlaylist, setUser } = props;
 
     const [ songs, setSongs ] = useState(undefined);
 
@@ -83,21 +83,24 @@ const Viz = (props) => {
         { title : 'Length', ref : length },
         { title : 'Genre', ref : genre },
         { title : 'Energy & Valence', ref : energy },
-        { title : 'Explicit', ref : explicit },
+        { title : 'Explicit Language', ref : explicit },
         { title : 'All Songs', ref : allSongs },
     ];
 
     const createPage = () => {
         if (songs === undefined) {
             return (
-                <Typography variant='h3' align='center'>
-                    {'Loading your music...'}
-                </Typography>
+                    <Typography variant='h3' align='center' style={{
+                        mt : 10,
+                        mb : 10
+                    }}>
+                        {'🎵Loading your music...😀'}
+                    </Typography>
             );
         } else {
             return (
                 <Fragment>
-                    <Sidebar/>
+                    <Sidebar setPlaylist={setPlaylist} setUser={setUser}/>
                     <Stack spacing={2}>
                         <TopBarMenu buttons={topButtons}/>
                         <SummaryHeader  playlist={playlist}
