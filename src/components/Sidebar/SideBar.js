@@ -42,7 +42,7 @@ const SideBar = (props) => {
                    { playlists==undefined ?  
                     <FaIcons.FaBars style={{marginLeft:12, cursor:"pointer"}}
                     onClick={showSidebar} /> 
-                    : <FaIcons.FaHome style={{marginLeft:12, cursor:"pointer"}}
+                    : <AiIcons.AiFillHome style={{marginLeft:12, cursor:"pointer"}}
                     onClick={(setPlaylist(undefined))} />}
 
                 <h2     style={{
