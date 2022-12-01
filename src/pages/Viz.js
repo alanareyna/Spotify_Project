@@ -56,12 +56,51 @@ const Viz = (props) => {
                             genres : [ 'todo' ]
                         }
                     })
-                    console.log(corrected);
+                    //console.log(corrected);
                     setSongs(corrected);
                 });
         }
 
-        getPlaylistSongs();
+        const api2 = new API();
+        async function getPlaylistSongsWithGenres() {
+            api2.getSongsFromPlaylistWithGenres(playlist.id)
+                .then(info => {
+                    console.log(`api returns info and it is: ${JSON.stringify(info)}`)
+                    const correctedProps = info.songs.map(song => {
+                        return {
+                            ...song,
+                            title : song.name,
+                            releaseDate : new Date(song.release_date),
+                            explicit : Boolean(song.explicit)
+                        }
+                    })
+
+                    const groupedGenre = correctedProps.reduce((prev, cur, idx) => {
+                        let reducedSong = prev.filter((v) => {
+                            return v.id === cur.id;
+                        });
+
+                        if (reducedSong.length === 0) {
+                            prev.push({
+                                ...cur,
+                                genres : cur.genre === null ? [ ] : [ cur.genre ]
+                            })
+                        } else {
+                            let song = reducedSong[0];
+                            let index = prev.indexOf(song);
+                            prev[index].genres.push(cur.genre);
+                        }
+                        return prev;
+                    }, [ ]);
+
+                    console.log(groupedGenre);
+
+                    setSongs(groupedGenre);
+                })
+        }
+
+        //getPlaylistSongs();
+        getPlaylistSongsWithGenres();
         // to do get the genres
 
     }, [ playlist ]);

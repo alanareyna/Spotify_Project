@@ -22,7 +22,7 @@ class LoginController {
                 }, (error, tuples) => {
                     if (error) {
                         console.log("Query error.", error);
-                        return reject(`Query error. Error msg: error`);
+                        return reject(`Query error. Error msg: ${error}`);
                     }
                     if (tuples.length === 1) {  // Did we have a matching user record?
                         setAccessToken(ctx, tuples[0]);

@@ -26,7 +26,7 @@ const PieChartByGenreWithOther = (props) => {
 
         const correctedBuckets = { };
         for (let genre of Object.keys(buckets)) {
-            if (buckets[genre] <= 2) {
+            if (buckets[genre] <= 6) {
                 if (correctedBuckets['Other'] === undefined) {
                     correctedBuckets['Other'] = buckets[genre];
                 } else {

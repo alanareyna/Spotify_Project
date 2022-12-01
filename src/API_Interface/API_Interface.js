@@ -51,6 +51,16 @@ export default class APIInterface {
             }))
     }
 
+    async getSongsFromPlaylistWithGenres(playlist) {
+        console.log('We have called getSongsFromPlaylistWithGenres');
+        return axiosAgent.get(`song/withgenre/${playlist}`)
+            .then(info => info.data)
+            .catch(error => ({
+                error,
+                songs : undefined
+            }))
+    }
+
     async register(username, password, firstName, lastName) {
         return axiosAgent.post(`/login/register`);
     }

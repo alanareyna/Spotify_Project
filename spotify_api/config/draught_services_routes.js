@@ -54,6 +54,10 @@ songRouter.get('/:playlist', SongController.songsByPlaylist, (err) => {
     console.log(`SongController::songsByPlaylist error: ${err}`)
 });
 
+songRouter.get('/withgenre/:playlist', SongController.songsByPlaylistWithGenres, (err) => {
+    console.log(`SongController::songsByPlaylistWithGenres error: ${err}.`)
+})
+
 // Routes-related routes.
 
 // const RoutesController = new (require('../app/Controllers/RoutesController.js'))();
