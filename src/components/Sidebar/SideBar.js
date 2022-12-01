@@ -39,11 +39,11 @@ const SideBar = (props) => {
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className='navbar' style={{justifyContent:"space-between"}}>
 
-                <FaIcons.FaBars     style={{
-                                        marginLeft:12,
-                                        cursor:"pointer"
-                                    }}
-                                    onClick={showSidebar}/>
+                   { playlists==undefined ?  
+                    <FaIcons.FaBars style={{marginLeft:12, cursor:"pointer"}}
+                    onClick={showSidebar} /> 
+                    : <FaIcons.FaHome style={{marginLeft:12, cursor:"pointer"}}
+                    onClick={(setPlaylist(undefined))} />}
 
                 <h2     style={{
                             font:"Gotham Circular",
