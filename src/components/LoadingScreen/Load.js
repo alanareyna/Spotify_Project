@@ -4,7 +4,7 @@ import {Typography,Grid} from "@mui/material";
 import "./Load.css";
 function Load() {
     return (
-        <div>
+        <div style={{marginTop:'10%'}}>
         <div className="loader"><img  className="LoadIcon" src={Loading}/></div>
 
             <Typography variant='h3' textAlign='center' fontWeight={20}>
