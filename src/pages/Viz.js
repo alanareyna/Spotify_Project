@@ -10,6 +10,8 @@ import "animate.css/animate.min.css";
 import ScrollToTop from 'react-scroll-to-top';
 import Sidebar from '../components/Sidebar/SideBar.js';
 
+import Load from '../components/LoadingScreen/Load.js';
+
 import TopBarMenu from '../components/TopBarMenu';
 
 import SummaryHeader from '../components/SummaryHeader/SummaryHeader';
@@ -129,12 +131,7 @@ const Viz = (props) => {
     const createPage = () => {
         if (songs === undefined) {
             return (
-                    <Typography variant='h3' align='center' style={{
-                        mt : 10,
-                        mb : 10
-                    }}>
-                        {'🎵Loading your music...😀'}
-                    </Typography>
+                    <Load/>
             );
         } else {
             return (
