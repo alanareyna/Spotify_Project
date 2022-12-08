@@ -1,0 +1,29 @@
+{
+  "name": "spotify_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Spotify_Project"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.3",
+    "koa-router": "^12.0.0",
+    "koajs": "^1.0.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
