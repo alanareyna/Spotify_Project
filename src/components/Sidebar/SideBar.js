@@ -40,10 +40,19 @@ const SideBar = (props) => {
             <div className='navbar' style={{justifyContent:"space-between"}}>
 
                    { playlists==undefined ?  
-                    <FaIcons.FaBars style={{marginLeft:12, cursor:"pointer"}}
-                    onClick={showSidebar} /> 
-                    : <AiIcons.AiFillHome style={{marginLeft:12, cursor:"pointer"}}
-                    onClick={(setPlaylist(undefined))} />}
+                        <FaIcons.FaBars     style={{
+                                                marginLeft:12,
+                                                cursor:"pointer"
+                                            }}
+                                            onClick={() => {
+                                                setPlaylist(undefined)
+                                            }} /> 
+                    :   <AiIcons.AiFillHome style={{
+                                                marginLeft:12,
+                                                cursor:"pointer"
+                                            }}
+                                            onClick={showSidebar}/>
+                    }
 
                 <h2     style={{
                             font:"Gotham Circular",
@@ -75,7 +84,7 @@ const SideBar = (props) => {
                     </li>
 
                     
-                    <Button variant="contained">⊕ import playlists</Button>
+                    {/*<Button variant="contained">⊕ import playlists</Button>*/}
                     
                     {getPlaylistMsg()}
 

@@ -4,8 +4,8 @@ var connection = mysql.createConnection({
         debug: true,
         host: 'localhost',
         port: 3306,
-        user: 'areyna',
-        password: 'alanareyna',
+        user: 'root',
+        password: 'password',
         database: 'spotify_api'
 });
 

@@ -20,18 +20,6 @@ INSERT INTO Playlist_Song (Playlist, Song) VALUES ("6UG231qsIRfhtQ9MfPBmZD", "7x
 INSERT INTO Genres (song, genre) VALUES ('7xQAfvXzm3AkraOtGPWIZg', 'dfw rap');
 INSERT INTO Genres (song, genre) VALUES ('7xQAfvXzm3AkraOtGPWIZg', 'melodic rap');
 INSERT INTO Genres (song, genre) VALUES ('7xQAfvXzm3AkraOtGPWIZg', 'rap');
-INSERT INTO Song (id, name, album, artist, release_date, popularity, danceability, duration_ms, energy, valence, explicit) VALUES ("66Q3fAmSX5eHamgbKa9alP", "Real Friends", "The Life Of Pablo", "Kanye West", "2016-06-10", 64, 0.441, 251573, 0.744, 0.124, true);
-INSERT INTO Playlist_Song (Playlist, Song) VALUES ("6UG231qsIRfhtQ9MfPBmZD", "66Q3fAmSX5eHamgbKa9alP");
-INSERT INTO Genres (song, genre) VALUES ('66Q3fAmSX5eHamgbKa9alP', 'chicago rap');
-INSERT INTO Genres (song, genre) VALUES ('66Q3fAmSX5eHamgbKa9alP', 'rap');
-INSERT INTO Song (id, name, album, artist, release_date, popularity, danceability, duration_ms, energy, valence, explicit) VALUES ("0zLClc0emc6qUeV1p5nc99", "No More Parties In LA", "The Life Of Pablo", "Kanye West", "2016-06-10", 70, 0.508, 374413, 0.921, 0.681, true);
-INSERT INTO Playlist_Song (Playlist, Song) VALUES ("6UG231qsIRfhtQ9MfPBmZD", "0zLClc0emc6qUeV1p5nc99");
-INSERT INTO Genres (song, genre) VALUES ('0zLClc0emc6qUeV1p5nc99', 'chicago rap');
-INSERT INTO Genres (song, genre) VALUES ('0zLClc0emc6qUeV1p5nc99', 'rap');
-INSERT INTO Song (id, name, album, artist, release_date, popularity, danceability, duration_ms, energy, valence, explicit) VALUES ("2CHmgtK8OCL28WtIK96u4N", "30 Hours", "The Life Of Pablo", "Kanye West", "2016-06-10", 63, 0.823, 323302, 0.813, 0.373, true);
-INSERT INTO Playlist_Song (Playlist, Song) VALUES ("6UG231qsIRfhtQ9MfPBmZD", "2CHmgtK8OCL28WtIK96u4N");
-INSERT INTO Genres (song, genre) VALUES ('2CHmgtK8OCL28WtIK96u4N', 'chicago rap');
-INSERT INTO Genres (song, genre) VALUES ('2CHmgtK8OCL28WtIK96u4N', 'rap');
 INSERT INTO Song (id, name, album, artist, release_date, popularity, danceability, duration_ms, energy, valence, explicit) VALUES ("2lD6AoA8qf2t4Dkf2TcmNK", "Rigamortus", "Section.80", "Kendrick Lamar", "2011-07-02", 63, 0.52, 168591, 0.807, 0.628, true);
 INSERT INTO Playlist_Song (Playlist, Song) VALUES ("6UG231qsIRfhtQ9MfPBmZD", "2lD6AoA8qf2t4Dkf2TcmNK");
 INSERT INTO Genres (song, genre) VALUES ('2lD6AoA8qf2t4Dkf2TcmNK', 'conscious hip hop');

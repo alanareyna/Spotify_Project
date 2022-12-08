@@ -39,7 +39,7 @@ function requestAuthorization(){
 
 const ProfilePage = (props) => {
 
-    const { user, setPlaylist } = props;
+    const { user, setUser, setPlaylist } = props;
     console.log(user);
     
     const [ playlists, setPlaylists ] = useState(undefined);
@@ -67,7 +67,7 @@ const ProfilePage = (props) => {
     }, [ playlists ])
 
     return (<Fragment >
-        <Sidebar playlists={playlists} setPlaylist={setPlaylist}/>
+        <Sidebar playlists={playlists} setPlaylist={setPlaylist} setUser={setUser}/>
             <Box sx={{height:250}}className="Header" style={{margin:'auto',backgroundColor:'#04395E', backgroundPosition: "center",backgroundSize: "cover", alignContent:"center"}}>
 
                 <h2 style={{
@@ -79,7 +79,7 @@ const ProfilePage = (props) => {
                     {`Welcome ${user.username}!`}<br/>Try selecting a playlist, or importing a new one from Spotify!
                 </h2>
             </Box>
-        {playlistData.length === 0 ? <div>
+        {playlists !== undefined && playlists.length === 0 ? <div>
             <h1 style={{marginTop:25,marginLeft:80,fontSize:'2.5rem'}}>New user?</h1>
             <p style={{marginTop:25,marginLeft:80,fontSize:'1.5rem', justifyContent:"space-evenly", textAlign:"left"}}>
             To get started, connect your Spotify
